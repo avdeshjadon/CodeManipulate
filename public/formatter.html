@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Formatter | CodeShift</title>
+    
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/features.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                CodeShift
+            </a>
+            
+            <div class="nav-items">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <div class="nav-item nav-dropdown" id="toolsDropdownContainer">
+                    <a href="#" class="nav-link" id="toolsDropdownBtn">All Tools <i class="fas fa-chevron-down dropdown-caret"></i></a>
+                    <div class="dropdown-menu" id="toolsDropdownMenu">
+                        <a href="index.html" class="dropdown-link">
+                            <i class="fas fa-exchange-alt"></i>
+                            <div>
+                                <span>Code Converter</span>
+                                <small>Translate code between languages</small>
+                            </div>
+                        </a>
+                        <a href="formatter.html" class="dropdown-link">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                            <div>
+                                <span>Code Formatter</span>
+                                <small>Beautify and clean your code</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="nav-link">Docs</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="features-hero" style="padding: 6rem 0;">
+            <h1><i class="fas fa-wand-magic-sparkles"></i> Code Formatter</h1>
+            <p style="font-size: 1.5rem; color: var(--accent-primary);">Coming Soon!</p>
+            <p>This powerful tool will automatically clean and beautify your code, making it more readable, consistent, and professional.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <i class="fas fa-code"></i>
+              CodeShift
+            </a>
+            <p class="footer-desc">
+              Advanced AI-powered code conversion tool that helps developers
+              translate code between programming languages efficiently.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Product</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="features.html"><i class="fas fa-chevron-right"></i> Features</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> All Tools</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Use Cases</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> API</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Resources</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#"
+                  ><i class="fas fa-chevron-right"></i> Documentation</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Tutorials</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Blog</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Support</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Company</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> About Us</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Careers</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"
+                  ><i class="fas fa-chevron-right"></i> Privacy Policy</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="#"
+                  ><i class="fas fa-chevron-right"></i> Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Newsletter</h3>
+            <p class="footer-newsletter-desc">
+              Stay updated with our latest tools and features
+            </p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">&copy; 2025 CodeShift. All rights reserved.</p>
+          <p class="made-by">Made with ❤️ by Avdesh Jadon</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script/main.js"></script>
+</body>
+</html>

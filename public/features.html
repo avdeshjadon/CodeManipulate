@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CodeShift | AI-Powered Code Conversion</title>
+    <title>Features | CodeShift</title>
 
     <script>
       (function () {
@@ -15,10 +15,15 @@
     </script>
 
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/features.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -37,8 +42,8 @@
         </a>
 
         <div class="nav-items">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="features.html" class="nav-link">Features</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="features.html" class="nav-link active">Features</a>
           <div class="nav-item nav-dropdown" id="toolsDropdownContainer">
             <a href="#" class="nav-link" id="toolsDropdownBtn"
               >All Tools <i class="fas fa-chevron-down dropdown-caret"></i
@@ -102,103 +107,148 @@
     </div>
 
     <main class="container">
-      <section class="hero">
-        <h1>Transform Code Between Languages</h1>
+      <section class="features-hero">
+        <h1>The Technology Behind CodeShift</h1>
         <p>
-          AI-powered code conversion with precision and efficiency. Convert code
-          in seconds, not hours.
+          Explore the sophisticated AI processes that power our tools and see
+          what's coming next.
         </p>
       </section>
 
-      <div class="converter">
-        <div class="card input-card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="fas fa-code"></i>
-              Input Code
-            </h2>
-            <div class="input-controls">
-              <button id="clearBtn" class="clear-btn" aria-label="Clear code">
-                <i class="fas fa-times"></i>
-                Clear
-              </button>
-              <label for="fileInput" class="file-upload">
-                <i class="fas fa-upload"></i>
-                Upload File
-              </label>
+      <div class="feature-card-wrapper">
+        <div class="feature-card">
+          <div class="card-header-window">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
             </div>
-            <input
-              type="file"
-              id="fileInput"
-              accept=".js,.py,.cpp,.c,.java,.ts,.txt,.html,.css,.php,.rb,.go"
-            />
+            <div class="window-title">How Code Conversion Works</div>
           </div>
-          <div class="card-content">
-            <textarea
-              id="inputCode"
-              placeholder="Paste your code here..."
-              spellcheck="false"
-            ></textarea>
-          </div>
-          <div class="card-footer">
-            <span id="inputCharCount">0 / 2000</span>
-          </div>
-        </div>
+          <div class="card-body">
+            <div class="feature-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <p class="feature-intro">
+              Our AI-powered code conversion is a multi-stage process that
+              intelligently understands your code's logic to provide highly
+              accurate and idiomatic translations.
+            </p>
 
-        <div class="card output-card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="fas fa-file-code"></i>
-              Converted Code
-            </h2>
-            <div class="output-controls">
-              <p>Detected: <span id="detectedLang">N/A</span></p>
-              <button
-                id="clearOutputBtn"
-                class="clear-btn"
-                aria-label="Clear output code"
-              >
-                <i class="fas fa-times"></i>
-              </button>
-              <button id="copyBtn" class="copy-btn" aria-label="Copy code">
-                <i class="fas fa-copy"></i>
-              </button>
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-icon"><i class="fas fa-search"></i></div>
+                <div class="step-content">
+                  <h3>1. Analysis & Language Detection</h3>
+                  <p>
+                    The AI first analyzes the syntax and keywords to accurately
+                    identify the source language, establishing the correct
+                    context for translation.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-icon"><i class="fas fa-sitemap"></i></div>
+                <div class="step-content">
+                  <h3>2. Abstract Syntax Tree (AST) Generation</h3>
+                  <p>
+                    It then builds a tree-like model of your code's structure
+                    (AST) to understand the relationships between functions,
+                    variables, and control flow, independent of the language.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-icon"><i class="fas fa-exchange-alt"></i></div>
+                <div class="step-content">
+                  <h3>3. Logical Mapping & Translation</h3>
+                  <p>
+                    The AI maps the core logic to equivalent patterns in the
+                    target language, translating not just syntax but also common
+                    idioms and standard library functions.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-icon"><i class="fas fa-code"></i></div>
+                <div class="step-content">
+                  <h3>4. Code Generation</h3>
+                  <p>
+                    Finally, the AI generates clean, functional, and readable
+                    code in the target language that maintains the integrity of
+                    your original work.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="card-content">
-            <textarea
-              id="outputCode"
-              placeholder="Your converted code will appear here..."
-              readonly
-              spellcheck="false"
-            ></textarea>
-          </div>
-          <div class="card-footer">
-            <span id="outputCharCount">Characters: 0</span>
           </div>
         </div>
       </div>
 
-      <div class="controls">
-        <div class="select-wrapper">
-          <select id="targetLang">
-            <option value="Python">Python</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="TypeScript">TypeScript</option>
-            <option value="C++">C++</option>
-            <option value="C">C</option>
-            <option value="Java">Java</option>
-            <option value="Go">Go</option>
-            <option value="Rust">Rust</option>
-            <option value="PHP">PHP</option>
-            <option value="Ruby">Ruby</option>
-          </select>
-        </div>
+      <div class="feature-card-wrapper">
+        <div class="feature-card">
+          <div class="card-header-window">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="window-title">Upcoming: Intelligent Code Formatter</div>
+          </div>
+          <div class="card-body">
+            <div class="feature-icon">
+              <i class="fas fa-wand-magic-sparkles"></i>
+            </div>
+            <p class="feature-intro">
+              Our next major tool will automatically clean, beautify, and
+              optimize your code, helping you maintain a professional and
+              consistent codebase with zero effort.
+            </p>
 
-        <button id="convertBtn" class="convert-btn">
-          <i class="fas fa-wand-magic-sparkles"></i>
-          <span>Convert Code</span>
-        </button>
+            <div class="formatter-features">
+              <div class="formatter-feature-item">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  <h4>Consistent Styling</h4>
+                  <p>
+                    Enforces a uniform style guide for indentation, spacing, and
+                    line breaks.
+                  </p>
+                </div>
+              </div>
+              <div class="formatter-feature-item">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  <h4>Smart Comment Removal</h4>
+                  <p>
+                    Optionally strips out comments for a clean, production-ready
+                    version.
+                  </p>
+                </div>
+              </div>
+              <div class="formatter-feature-item">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  <h4>Unused Code Detection</h4>
+                  <p>
+                    Highlights or removes unused variables and imports to reduce
+                    clutter.
+                  </p>
+                </div>
+              </div>
+              <div class="formatter-feature-item">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  <h4>Code Minification</h4>
+                  <p>
+                    Removes all extra spaces and line breaks to optimize code
+                    for web performance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -309,20 +359,6 @@
         </div>
       </div>
     </footer>
-
-    <div id="alertOverlay" class="modal-overlay"></div>
-    <div id="alertModal" class="modal">
-      <div class="modal-header">
-        <span id="modalIcon" class="modal-icon"></span>
-        <h3 id="modalTitle" class="modal-title"></h3>
-      </div>
-      <div class="modal-body">
-        <p id="modalMessage"></p>
-      </div>
-      <div class="modal-footer">
-        <button id="modalCloseBtn" class="modal-btn">OK</button>
-      </div>
-    </div>
 
     <script src="script/main.js"></script>
   </body>
