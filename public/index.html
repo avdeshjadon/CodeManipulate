@@ -1,33 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Code Language Converter</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Language Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-  <h1>🧠 Language Converter</h1>
+    <div class="background-gradient"></div>
 
-  <input type="file" id="fileInput" accept=".js,.py,.cpp,.c,.java,.ts,.txt" />
-  <br /><br />
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-code"></i> CodeShift
+            </a>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-checkbox">
+                    <input type="checkbox" id="theme-checkbox" />
+                    <div class="slider">
+                        <i class="fa-solid fa-sun sun-icon"></i>
+                        <i class="fa-solid fa-moon moon-icon"></i>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </nav>
 
-  <textarea id="inputCode" placeholder="Paste your code here, or upload a file..." rows="10"></textarea>
+    <main class="container">
+        <div class="hero-section">
+            <h1>Convert Code <span class="highlight">Instantly</span></h1>
+            <p>Paste your code, upload a file, and let our AI-powered engine do the rest.</p>
+        </div>
 
-  <div class="controls">
-    <select id="targetLang">
-      <option value="Python">Python</option>
-      <option value="JavaScript">JavaScript</option>
-      <option value="C++">C++</option>
-      <option value="C">C</option>
-      <option value="Java">Java</option>
-    </select>
-    <button id="convertBtn">Convert</button>
-  </div>
+        <div class="grid-container">
+            <div class="card input-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-arrow-down-a-z"></i> Input</h2>
+                    <label for="fileInput" class="file-label">
+                        <i class="fa-solid fa-upload"></i> Upload File
+                    </label>
+                    <input type="file" id="fileInput" accept=".js,.py,.cpp,.c,.java,.ts,.txt">
+                </div>
+                <textarea id="inputCode" placeholder="Paste your code here..." rows="15"></textarea>
+            </div>
 
-  <h3>Detected Language: <span id="detectedLang">N/A</span></h3>
+            <div class="card output-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-arrow-up-a-z"></i> Output</h2>
+                    <p>Detected: <span id="detectedLang">N/A</span></p>
+                </div>
+                <textarea id="outputCode" placeholder="Your converted code will appear here..." rows="15" readonly></textarea>
+            </div>
+        </div>
 
-  <textarea id="outputCode" placeholder="Converted code will appear here..." rows="10" readonly></textarea>
+        <div class="controls">
+            <div class="select-wrapper">
+                <select id="targetLang">
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C++">C++</option>
+                    <option value="C">C</option>
+                    <option value="Java">Java</option>
+                </select>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <button id="convertBtn">
+                <span class="btn-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                <span class="btn-text">Convert</span>
+            </button>
+        </div>
+    </main>
 
-  <script src="script/main.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CodeShift. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <div id="notification" class="notification"></div>
+    <script src="script/script.js"></script>
 </body>
 </html>
