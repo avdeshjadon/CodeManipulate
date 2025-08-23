@@ -2,100 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Code Language Converter</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>🧠 Language Converter</h1>
-
-  <input type="file" id="fileInput" accept=".js,.py,.cpp,.c,.java,.ts,.txt" />
-  <br /><br />
-
-  <textarea id="inputCode" placeholder="Code will appear here..." rows="10"></textarea>
-
-  <select id="targetLang">
-    <option value="Python">Python</option>
-    <option value="JavaScript">JavaScript</option>
-    <option value="C++">C++</option>
-    <option value="C">C</option>
-    <option value="Java">Java</option>
-  </select>
-
-  <button id="convertBtn">Convert</button>
-
-  <h3>Detected Language: <span id="detectedLang"></span></h3>
-
-  <textarea id="outputCode" placeholder="Converted code will appear here..." rows="10"></textarea>
-
-  <script src="script/main.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Language Converter</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <span class="logo-icon">🔄</span>
-        <span class="logo-text">Converter</span>
-      </div>
-      <button class="dark-mode-toggle" id="darkModeToggle">
-        <span class="toggle-icon">🌙</span>
-      </button>
-    </div>
-  </nav>
+  <div class="container">
+    <header>
+      <h1>Code Converter</h1>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+    </header>
 
-  <!-- Main Content -->
-  <main class="main-content">
-    <div class="container">
-      <h1>Code Language Converter</h1>
-
-      <!-- File Upload Section -->
+    <main>
       <div class="upload-section">
         <label for="fileInput" class="file-upload-btn">
           <span class="upload-icon">📁</span>
-          <span>Choose File</span>
+          <span>Upload Code</span>
         </label>
         <input type="file" id="fileInput" accept=".js,.py,.cpp,.c,.java,.ts,.txt" hidden />
       </div>
 
-      <!-- Code Sections -->
-      <div class="code-container">
-        <div class="code-section">
-          <div class="section-header">
-            <h3>Input Code</h3>
+      <div class="code-panels">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Input</h3>
           </div>
-          <textarea 
-            id="inputCode" 
-            placeholder="Paste your code here or upload a file..."
-            rows="12"
-          ></textarea>
+          <textarea id="inputCode" placeholder="Paste code or upload a file..." rows="12"></textarea>
         </div>
 
-        <div class="code-section">
-          <div class="section-header">
-            <h3>Output Code</h3>
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Output</h3>
           </div>
-          <textarea 
-            id="outputCode" 
-            placeholder="Converted code will appear here..."
-            rows="12"
-            readonly
-          ></textarea>
+          <textarea id="outputCode" placeholder="Converted code will appear here..." rows="12" readonly></textarea>
         </div>
       </div>
 
-      <!-- Controls -->
       <div class="controls">
-        <div class="control-group">
-          <label for="targetLang">Target Language:</label>
+        <div class="language-selector">
+          <label for="targetLang">Convert to:</label>
           <select id="targetLang">
             <option value="Python">Python</option>
             <option value="JavaScript">JavaScript</option>
@@ -111,20 +56,12 @@
         </button>
       </div>
 
-      <!-- Status -->
       <div class="status">
-        <span class="status-label">Detected Language:</span>
+        <span>Detected Language:</span>
         <span id="detectedLang" class="detected-lang">-</span>
       </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2024 Converter. Built with ❤️ for developers.</p>
-    </div>
-  </footer>
+    </main>
+  </div>
 
   <script src="script/main.js"></script>
 </body>
