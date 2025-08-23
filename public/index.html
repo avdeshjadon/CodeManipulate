@@ -1,87 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Language Converter</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<body>
-    <div class="background-gradient"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeShift | AI-Powered Code Conversion</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="gradient-bg"></div>
 
     <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-code"></i> CodeShift
-            </a>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="theme-checkbox">
-                    <input type="checkbox" id="theme-checkbox" />
-                    <div class="slider">
-                        <i class="fa-solid fa-sun sun-icon"></i>
-                        <i class="fa-solid fa-moon moon-icon"></i>
-                    </div>
-                </label>
-            </div>
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          CodeShift
+        </a>
+
+        <div class="nav-items">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Features</a>
+          <a href="#" class="nav-link">All Tools</a>
+          <a href="#" class="nav-link">Docs</a>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
         </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </nav>
 
+    <div class="overlay" id="overlay"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="menu-header">
+        <a href="#" class="logo">
+          <i class="fas fa-code"></i>
+          CodeShift
+        </a>
+        <button class="close-menu" id="closeMenu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="mobile-nav">
+        <a href="#" class="mobile-nav-link">Home</a>
+        <a href="#" class="mobile-nav-link">Features</a>
+        <a href="#" class="mobile-nav-link">All Tools</a>
+        <a href="#" class="mobile-nav-link">Docs</a>
+        <button class="theme-toggle" id="mobileThemeToggle">
+          <i class="fas fa-moon"></i>
+          <span>Dark Mode</span>
+        </button>
+      </div>
+    </div>
+
     <main class="container">
-        <div class="hero-section">
-            <h1>Convert Code <span class="highlight">Instantly</span></h1>
-            <p>Paste your code, upload a file, and let our AI-powered engine do the rest.</p>
+      <section class="hero">
+        <h1>Transform Code Between Languages</h1>
+        <p>
+          AI-powered code conversion with precision and efficiency. Convert code
+          in seconds, not hours.
+        </p>
+      </section>
+
+      <div class="converter">
+        <div class="card input-card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-code"></i>
+              Input Code
+            </h2>
+            <div class="input-controls">
+              <button id="clearBtn" class="clear-btn" aria-label="Clear code">
+                <i class="fas fa-times"></i>
+                Clear
+              </button>
+              <label for="fileInput" class="file-upload">
+                <i class="fas fa-upload"></i>
+                Upload File
+              </label>
+            </div>
+            <input
+              type="file"
+              id="fileInput"
+              accept=".js,.py,.cpp,.c,.java,.ts,.txt,.html,.css,.php,.rb,.go"
+            />
+          </div>
+          <div class="card-content">
+            <textarea
+              id="inputCode"
+              placeholder="Paste your code here..."
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="card-footer">
+            <span id="inputCharCount">0 / 2000</span>
+          </div>
         </div>
 
-        <div class="grid-container">
-            <div class="card input-card">
-                <div class="card-header">
-                    <h2><i class="fa-solid fa-arrow-down-a-z"></i> Input</h2>
-                    <label for="fileInput" class="file-label">
-                        <i class="fa-solid fa-upload"></i> Upload File
-                    </label>
-                    <input type="file" id="fileInput" accept=".js,.py,.cpp,.c,.java,.ts,.txt">
-                </div>
-                <textarea id="inputCode" placeholder="Paste your code here..." rows="15"></textarea>
+        <div class="card output-card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-file-code"></i>
+              Converted Code
+            </h2>
+            <div class="output-controls">
+              <p>Detected: <span id="detectedLang">N/A</span></p>
+              <button id="copyBtn" class="copy-btn" aria-label="Copy code">
+                <i class="fas fa-copy"></i>
+              </button>
             </div>
+          </div>
+          <div class="card-content">
+            <textarea
+              id="outputCode"
+              placeholder="Your converted code will appear here..."
+              readonly
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="card-footer">
+            <span id="outputCharCount">Characters: 0</span>
+          </div>
+        </div>
+      </div>
 
-            <div class="card output-card">
-                <div class="card-header">
-                    <h2><i class="fa-solid fa-arrow-up-a-z"></i> Output</h2>
-                    <p>Detected: <span id="detectedLang">N/A</span></p>
-                </div>
-                <textarea id="outputCode" placeholder="Your converted code will appear here..." rows="15" readonly></textarea>
-            </div>
+      <div class="controls">
+        <div class="select-wrapper">
+          <select id="targetLang">
+            <option value="Python">Python</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="C++">C++</option>
+            <option value="C">C</option>
+            <option value="Java">Java</option>
+            <option value="Go">Go</option>
+            <option value="Rust">Rust</option>
+            <option value="PHP">PHP</option>
+            <option value="Ruby">Ruby</option>
+          </select>
         </div>
 
-        <div class="controls">
-            <div class="select-wrapper">
-                <select id="targetLang">
-                    <option value="Python">Python</option>
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="C++">C++</option>
-                    <option value="C">C</option>
-                    <option value="Java">Java</option>
-                </select>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <button id="convertBtn">
-                <span class="btn-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-                <span class="btn-text">Convert</span>
-            </button>
-        </div>
+        <button id="convertBtn" class="convert-btn">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          <span>Convert Code</span>
+        </button>
+      </div>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 CodeShift. All Rights Reserved.</p>
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="footer-logo">
+              <i class="fas fa-code"></i>
+              CodeShift
+            </a>
+            <p class="footer-desc">
+              Advanced AI-powered code conversion tool that helps developers
+              translate code between programming languages efficiently.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Product</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Features</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> All Tools</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Use Cases</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> API</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Resources</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#"
+                  ><i class="fas fa-chevron-right"></i> Documentation</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Tutorials</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Blog</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Support</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Company</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> About Us</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"><i class="fas fa-chevron-right"></i> Careers</a>
+              </li>
+              <li class="footer-link">
+                <a href="#"
+                  ><i class="fas fa-chevron-right"></i> Privacy Policy</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="#"
+                  ><i class="fas fa-chevron-right"></i> Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-heading">Newsletter</h3>
+            <p class="footer-newsletter-desc">
+              Stay updated with our latest tools and features
+            </p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">&copy; 2025 CodeShift. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
     </footer>
-    
-    <div id="notification" class="notification"></div>
+
+    <div id="alertOverlay" class="modal-overlay"></div>
+    <div id="alertModal" class="modal">
+      <div class="modal-header">
+        <span id="modalIcon" class="modal-icon"></span>
+        <h3 id="modalTitle" class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalCloseBtn" class="modal-btn">OK</button>
+      </div>
+    </div>
+
     <script src="script/main.js"></script>
-</body>
+  </body>
 </html>
