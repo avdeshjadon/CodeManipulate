@@ -123,6 +123,13 @@
             </h2>
             <div class="output-controls">
               <p>Detected: <span id="detectedLang">N/A</span></p>
+              <button
+                id="clearOutputBtn"
+                class="clear-btn"
+                aria-label="Clear output code"
+              >
+                <i class="fas fa-times"></i>
+              </button>
               <button id="copyBtn" class="copy-btn" aria-label="Copy code">
                 <i class="fas fa-copy"></i>
               </button>
@@ -269,7 +276,6 @@
         </div>
       </div>
     </footer>
-
     <div id="alertOverlay" class="modal-overlay"></div>
     <div id="alertModal" class="modal">
       <div class="modal-header">
