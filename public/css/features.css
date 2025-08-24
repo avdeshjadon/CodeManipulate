@@ -160,7 +160,6 @@
 .step-content p {
     color: var(--text-secondary);
     line-height: 1.7;
-    font-family: 'Fira Code', monospace;
 }
 
 .feature-card.upcoming {

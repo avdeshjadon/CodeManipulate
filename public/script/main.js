@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("fileInput");
     const inputCode = document.getElementById("inputCode");
     const inputCharCount = document.getElementById("inputCharCount");
-    const charLimit = 2000;
+    const charLimit = 5000;
 
     function updateCharCount() {
       const currentLength = inputCode.value.length;
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
           copyBtn.innerHTML = '<i class="fas fa-check"></i>';
           setTimeout(() => {
             copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-          }, 2000);
+          }, 5000);
         })
         .catch((err) => {
           showNotification("Error", "Failed to copy code.", "error");

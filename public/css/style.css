@@ -916,7 +916,7 @@ textarea:focus {
 .nav-dropdown.open .dropdown-menu {
   opacity: 1;
   visibility: visible;
-  top: calc(100% + 5px);
+  top: calc(100% + 30px);
 }
 
 .dropdown-link {
