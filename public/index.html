@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CodeShift | AI-Powered Code Conversion</title>
-
+    <title>Code Translator | CodeShift</title>
     <script>
       (function () {
         const theme = localStorage.getItem("theme");
@@ -13,12 +12,16 @@
         }
       })();
     </script>
-
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -28,7 +31,6 @@
   </head>
   <body>
     <div class="gradient-bg"></div>
-
     <nav class="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
@@ -36,70 +38,20 @@
           CodeShift
         </a>
 
-        <div class="nav-items">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="features.html" class="nav-link">Features</a>
-          <div class="nav-item nav-dropdown" id="toolsDropdownContainer">
-            <a href="#" class="nav-link" id="toolsDropdownBtn"
-              >All Tools <i class="fas fa-chevron-down dropdown-caret"></i
-            ></a>
-            <div class="dropdown-menu" id="toolsDropdownMenu">
-              <a href="index.html" class="dropdown-link">
-                <i class="fas fa-exchange-alt"></i>
-                <div>
-                  <span>Code Converter</span>
-                  <small>Translate code between languages</small>
-                </div>
-              </a>
-              <a href="formatter.html" class="dropdown-link">
-                <i class="fas fa-wand-magic-sparkles"></i>
-                <div>
-                  <span>Code Formatter</span>
-                  <small>Beautify and clean your code</small>
-                </div>
-              </a>
-            </div>
-          </div>
-          <a href="#" class="nav-link">Docs</a>
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Toggle dark mode"
-          >
-            <i class="fas fa-moon"></i>
-          </button>
+        <div class="nav-toggle">
+          <a href="index.html" class="toggle-option active">Code Translator</a>
+          <a href="formatter.html" class="toggle-option">Code Formatter</a>
         </div>
 
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <i class="fas fa-bars"></i>
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fas fa-moon"></i>
         </button>
       </div>
     </nav>
-
-    <div class="overlay" id="overlay"></div>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="menu-header">
-        <a href="index.html" class="logo">
-          <i class="fas fa-code"></i>
-          CodeShift
-        </a>
-        <button class="close-menu" id="closeMenu">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-      <div class="mobile-nav">
-        <a href="index.html" class="mobile-nav-link">Home</a>
-        <a href="features.html" class="mobile-nav-link">Features</a>
-        <a href="#" class="mobile-nav-link">All Tools</a>
-        <a href="#" class="mobile-nav-link">Docs</a>
-        <button class="theme-toggle" id="mobileThemeToggle">
-          <i class="fas fa-moon"></i>
-          <span>Dark Mode</span>
-        </button>
-      </div>
-    </div>
 
     <main class="container">
       <section class="hero">
@@ -109,7 +61,6 @@
           in seconds, not hours.
         </p>
       </section>
-
       <div class="converter">
         <div class="card input-card">
           <div class="card-header">
@@ -141,10 +92,9 @@
             ></textarea>
           </div>
           <div class="card-footer">
-            <span id="inputCharCount">0 / 2000</span>
+            <span id="inputCharCount">0 / 5000</span>
           </div>
         </div>
-
         <div class="card output-card">
           <div class="card-header">
             <h2 class="card-title">
@@ -178,7 +128,6 @@
           </div>
         </div>
       </div>
-
       <div class="controls">
         <div class="select-wrapper">
           <select id="targetLang">
@@ -194,14 +143,12 @@
             <option value="Ruby">Ruby</option>
           </select>
         </div>
-
         <button id="convertBtn" class="convert-btn">
           <i class="fas fa-wand-magic-sparkles"></i>
           <span>Convert Code</span>
         </button>
       </div>
     </main>
-
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-grid">
@@ -223,15 +170,9 @@
               <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
             </div>
           </div>
-
           <div class="footer-section">
             <h3 class="footer-heading">Product</h3>
             <ul class="footer-links">
-              <li class="footer-link">
-                <a href="features.html"
-                  ><i class="fas fa-chevron-right"></i> Features</a
-                >
-              </li>
               <li class="footer-link">
                 <a href="#"><i class="fas fa-chevron-right"></i> All Tools</a>
               </li>
@@ -243,7 +184,6 @@
               </li>
             </ul>
           </div>
-
           <div class="footer-section">
             <h3 class="footer-heading">Resources</h3>
             <ul class="footer-links">
@@ -258,12 +198,8 @@
               <li class="footer-link">
                 <a href="#"><i class="fas fa-chevron-right"></i> Blog</a>
               </li>
-              <li class="footer-link">
-                <a href="#"><i class="fas fa-chevron-right"></i> Support</a>
-              </li>
             </ul>
           </div>
-
           <div class="footer-section">
             <h3 class="footer-heading">Company</h3>
             <ul class="footer-links">
@@ -278,14 +214,8 @@
                   ><i class="fas fa-chevron-right"></i> Privacy Policy</a
                 >
               </li>
-              <li class="footer-link">
-                <a href="#"
-                  ><i class="fas fa-chevron-right"></i> Terms of Service</a
-                >
-              </li>
             </ul>
           </div>
-
           <div class="footer-section">
             <h3 class="footer-heading">Newsletter</h3>
             <p class="footer-newsletter-desc">
@@ -297,19 +227,16 @@
             </form>
           </div>
         </div>
-
         <div class="footer-bottom">
           <p class="copyright">&copy; 2025 CodeShift. All rights reserved.</p>
           <p class="made-by">Made with ❤️ by Avdesh Jadon</p>
           <div class="footer-bottom-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
-            <a href="#">Cookie Policy</a>
           </div>
         </div>
       </div>
     </footer>
-
     <div id="alertOverlay" class="modal-overlay"></div>
     <div id="alertModal" class="modal">
       <div class="modal-header">
@@ -323,7 +250,6 @@
         <button id="modalCloseBtn" class="modal-btn">OK</button>
       </div>
     </div>
-
-    <script src="script/main.js"></script>
+    <script src="script/main.js" defer></script>
   </body>
 </html>

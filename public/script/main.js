@@ -1,23 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("themeToggle");
-  const mobileThemeToggle = document.getElementById("mobileThemeToggle");
   const docElement = document.documentElement;
 
   function applyTheme(theme) {
     if (theme === "dark") {
       docElement.classList.add("dark-mode");
       if (themeToggle) themeToggle.querySelector("i").className = "fas fa-sun";
-      if (mobileThemeToggle) {
-        mobileThemeToggle.querySelector("i").className = "fas fa-sun";
-        mobileThemeToggle.querySelector("span").textContent = "Light Mode";
-      }
     } else {
       docElement.classList.remove("dark-mode");
       if (themeToggle) themeToggle.querySelector("i").className = "fas fa-moon";
-      if (mobileThemeToggle) {
-        mobileThemeToggle.querySelector("i").className = "fas fa-moon";
-        mobileThemeToggle.querySelector("span").textContent = "Dark Mode";
-      }
     }
     localStorage.setItem("theme", theme);
   }
@@ -25,61 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme") || "light";
   applyTheme(savedTheme);
 
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const newTheme = docElement.classList.contains("dark-mode")
-        ? "light"
-        : "dark";
-      applyTheme(newTheme);
-    });
+  function toggleTheme() {
+    const newTheme = docElement.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
+    applyTheme(newTheme);
   }
 
-  if (mobileThemeToggle) {
-    mobileThemeToggle.addEventListener("click", () => {
-      const newTheme = docElement.classList.contains("dark-mode")
-        ? "light"
-        : "dark";
-      applyTheme(newTheme);
-    });
-  }
-
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const closeMenu = document.getElementById("closeMenu");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("overlay");
-
-  function toggleMenu() {
-    if (mobileMenu) mobileMenu.classList.toggle("open");
-    if (overlay) overlay.classList.toggle("show");
-    document.body.style.overflow = mobileMenu.classList.contains("open")
-      ? "hidden"
-      : "";
-  }
-
-  if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", toggleMenu);
-  if (closeMenu) closeMenu.addEventListener("click", toggleMenu);
-  if (overlay) overlay.addEventListener("click", toggleMenu);
-
-  const toolsDropdownContainer = document.getElementById(
-    "toolsDropdownContainer"
-  );
-  const toolsDropdownBtn = document.getElementById("toolsDropdownBtn");
-
-  if (toolsDropdownBtn) {
-    toolsDropdownBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const wasOpen = toolsDropdownContainer.classList.contains("open");
-      toolsDropdownContainer.classList.toggle("open");
-      document.body.classList.toggle("dropdown-active", !wasOpen);
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!toolsDropdownContainer.contains(e.target)) {
-        toolsDropdownContainer.classList.remove("open");
-        document.body.classList.remove("dropdown-active");
-      }
-    });
-  }
+  if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
   const convertBtn = document.getElementById("convertBtn");
   if (convertBtn) {
@@ -91,32 +35,34 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateCharCount() {
       const currentLength = inputCode.value.length;
       inputCharCount.textContent = `${currentLength} / ${charLimit}`;
-      if (currentLength > charLimit) {
-        inputCharCount.classList.add("error");
-      } else {
-        inputCharCount.classList.remove("error");
-      }
+      inputCharCount.classList.toggle("error", currentLength > charLimit);
     }
 
-    inputCode.addEventListener("input", updateCharCount);
-    updateCharCount();
+    if (inputCode) {
+      inputCode.addEventListener("input", updateCharCount);
+      updateCharCount();
+    }
 
-    fileInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        inputCode.value = event.target.result;
-        updateCharCount();
-      };
-      reader.readAsText(file);
-    });
+    if (fileInput) {
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          inputCode.value = event.target.result;
+          updateCharCount();
+        };
+        reader.readAsText(file);
+      });
+    }
 
     const clearBtn = document.getElementById("clearBtn");
-    clearBtn.addEventListener("click", () => {
-      inputCode.value = "";
-      updateCharCount();
-    });
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        inputCode.value = "";
+        updateCharCount();
+      });
+    }
 
     const copyBtn = document.getElementById("copyBtn");
     const outputCode = document.getElementById("outputCode");
@@ -124,95 +70,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearOutputBtn = document.getElementById("clearOutputBtn");
     const detectedLang = document.getElementById("detectedLang");
 
-    copyBtn.addEventListener("click", () => {
-      if (!outputCode.value) return;
-      navigator.clipboard
-        .writeText(outputCode.value)
-        .then(() => {
-          showNotification("Success", "Code copied to clipboard!", "success");
-          copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-          setTimeout(() => {
-            copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-          }, 5000);
-        })
-        .catch((err) => {
-          showNotification("Error", "Failed to copy code.", "error");
-        });
-    });
-
-    clearOutputBtn.addEventListener("click", () => {
-      outputCode.value = "";
-      outputCharCount.textContent = "Characters: 0";
-      detectedLang.textContent = "N/A";
-    });
-
-    function setLoadingState(isLoading) {
-      if (isLoading) {
-        convertBtn.disabled = true;
-        convertBtn.innerHTML =
-          '<i class="fas fa-spinner fa-spin"></i><span>Converting...</span>';
-      } else {
-        convertBtn.disabled = false;
-        convertBtn.innerHTML =
-          '<i class="fas fa-wand-magic-sparkles"></i><span>Convert Code</span>';
-      }
+    if (copyBtn) {
+      copyBtn.addEventListener("click", () => {
+        if (!outputCode.value) return;
+        navigator.clipboard
+          .writeText(outputCode.value)
+          .then(() => {
+            showNotification("Success", "Code copied to clipboard!", "success");
+            const originalIcon = '<i class="fas fa-copy"></i>';
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+              copyBtn.innerHTML = originalIcon;
+            }, 2000);
+          })
+          .catch(() =>
+            showNotification("Error", "Failed to copy code.", "error")
+          );
+      });
     }
 
-    convertBtn.addEventListener("click", async () => {
-      const code = inputCode.value;
-      const targetLang = document.getElementById("targetLang").value;
-
-      updateCharCount();
-
-      if (!code.trim()) {
-        showNotification(
-          "Input Required",
-          "Please enter or upload some code to convert.",
-          "error"
-        );
-        return;
-      }
-
-      if (code.length > charLimit) {
-        const excessChars = code.length - charLimit;
-        const message = `Your code is ${excessChars} characters over the ${charLimit} character limit. Please reduce the code length.`;
-        showNotification("Character Limit Exceeded", message, "error");
-        return;
-      }
-
-      convertBtn.classList.add("clicked");
-      setTimeout(() => convertBtn.classList.remove("clicked"), 300);
-
-      setLoadingState(true);
-      outputCode.value = "";
-      detectedLang.textContent = "N/A";
-      outputCharCount.textContent = "Characters: 0";
-
-      try {
-        const response = await fetch("http://localhost:3000/convert", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code, targetLang }),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || "An unknown error occurred.");
-        }
-
-        const data = await response.json();
-        detectedLang.textContent = data.detectedLang;
-        outputCode.value = data.convertedCode;
-        outputCharCount.textContent = `Characters: ${data.convertedCode.length}`;
-
-        showNotification("Success", "Code converted successfully!", "success");
-      } catch (err) {
-        outputCode.value = `Error: ${err.message}`;
-        showNotification("Conversion Failed", err.message, "error");
-      } finally {
-        setLoadingState(false);
-      }
-    });
+    if (clearOutputBtn) {
+      clearOutputBtn.addEventListener("click", () => {
+        outputCode.value = "";
+        if (outputCharCount) outputCharCount.textContent = "Characters: 0";
+        if (detectedLang) detectedLang.textContent = "N/A";
+      });
+    }
   }
 
   const alertModal = document.getElementById("alertModal");
@@ -223,13 +106,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalCloseBtn = document.getElementById("modalCloseBtn");
 
   function showNotification(title, message, type = "info") {
-    if (!alertModal) return;
+    if (
+      !alertModal ||
+      !alertOverlay ||
+      !modalTitle ||
+      !modalMessage ||
+      !modalIcon
+    )
+      return;
     modalTitle.textContent = title;
     modalMessage.textContent = message;
-
     alertModal.className = "modal";
     modalIcon.innerHTML = "";
-
     if (type === "success") {
       alertModal.classList.add("success");
       modalIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
@@ -239,15 +127,15 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       modalIcon.innerHTML = '<i class="fas fa-info-circle"></i>';
     }
-
     alertModal.classList.add("show");
     alertOverlay.classList.add("show");
   }
 
   function hideNotification() {
-    if (!alertModal) return;
-    alertModal.classList.remove("show");
-    alertOverlay.classList.remove("show");
+    if (alertModal && alertOverlay) {
+      alertModal.classList.remove("show");
+      alertOverlay.classList.remove("show");
+    }
   }
 
   if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideNotification);
@@ -260,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newsletterForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const emailInput = newsletterForm.querySelector('input[type="email"]');
-      if (emailInput.value) {
+      if (emailInput && emailInput.value) {
         showNotification(
           "Thank You!",
           "You have subscribed to our newsletter.",
