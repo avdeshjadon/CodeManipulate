@@ -1,12 +1,12 @@
 :root {
-  --bg-primary: #eef2e6; /* Slightly lighter green for cleaner feel */
+  --bg-primary: #eef2e6; 
   --bg-secondary: #f4f7f0;
   --text-primary: #0f172a;
-  --text-secondary: #475569; /* Bit darker than #64748b for readability */
-  --accent-primary: #5dad6c;
-  --accent-secondary: #5dad6c;
-  --border-color: #d1d5db; /* Softer border color */
-  --success: #22c55e; /* Slightly brighter success */
+  --text-secondary: #475569; 
+  --accent-primary: #469154;
+  --accent-secondary: #469154;
+  --border-color: #d1d5db; 
+  --success: #22c55e; 
   --error: #ef4444;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
@@ -71,7 +71,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-background: #dfdfda;
+  background: #dfdfda;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   transition: var(--transition);
