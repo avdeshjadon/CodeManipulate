@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearBtn = document.getElementById("clearBtn");
     const copyBtn = document.getElementById("copyBtn");
     const clearOutputBtn = document.getElementById("clearOutputBtn");
-    const charLimit = 5000;
+    const charLimit = 15000;
 
     // --- CORE LOGIC THAT WAS MISSING ---
     convertBtn.addEventListener("click", async () => {
