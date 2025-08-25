@@ -17,126 +17,71 @@ document.addEventListener("DOMContentLoaded", () => {
   applyTheme(savedTheme);
 
   function toggleTheme() {
-    const newTheme = docElement.classList.contains("dark-mode") ? "light" : "dark";
+    const newTheme = docElement.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
     applyTheme(newTheme);
   }
 
   if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
-  // --- Start of Code Translator Logic ---
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const toolsDrawer = document.getElementById("toolsDrawer");
+  const mainContainer = document.querySelector(".container");
+
+  if (allToolsBtn && toolsDrawer && mainContainer) {
+    allToolsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isDrawerOpen = toolsDrawer.classList.toggle("show");
+      allToolsBtn.classList.toggle("active");
+
+      if (isDrawerOpen) {
+        document.documentElement.style.setProperty(
+          "--drawer-height",
+          `${toolsDrawer.scrollHeight}px`
+        );
+        mainContainer.classList.add("content-shifted");
+      } else {
+        mainContainer.classList.remove("content-shifted");
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!toolsDrawer.contains(e.target) && !allToolsBtn.contains(e.target)) {
+        if (toolsDrawer.classList.contains("show")) {
+          toolsDrawer.classList.remove("show");
+          allToolsBtn.classList.remove("active");
+          mainContainer.classList.remove("content-shifted");
+        }
+      }
+    });
+  }
+
   const convertBtn = document.getElementById("convertBtn");
   if (convertBtn) {
-    const fileInput = document.getElementById("fileInput");
     const inputCode = document.getElementById("inputCode");
     const outputCode = document.getElementById("outputCode");
     const targetLangSelect = document.getElementById("targetLang");
     const detectedLang = document.getElementById("detectedLang");
+    const langSelectWrapper = document.querySelector(".select-wrapper");
+    const rateLimitTimer = document.getElementById("rateLimitTimer");
     const inputCharCount = document.getElementById("inputCharCount");
     const outputCharCount = document.getElementById("outputCharCount");
     const clearBtn = document.getElementById("clearBtn");
     const copyBtn = document.getElementById("copyBtn");
     const clearOutputBtn = document.getElementById("clearOutputBtn");
-    const charLimit = 15000;
-    
-    // *** NEW: Get reference to the language selector wrapper ***
-    const langSelectWrapper = document.querySelector(".select-wrapper");
-    const rateLimitTimer = document.getElementById("rateLimitTimer");
     let countdownInterval;
 
     const resetConvertButton = () => {
       convertBtn.disabled = false;
-      convertBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> <span>Convert Code</span>';
+      convertBtn.innerHTML =
+        '<i class="fas fa-wand-magic-sparkles"></i> <span>Convert Code</span>';
     };
-    
-    // *** UPDATED: This function now hides the controls ***
-    const handleRateLimit = (retryAfter) => {
-      let timeLeft = retryAfter;
-      showNotification(
-        "Rate Limit Reached",
-        `You have made too many requests. Please try again in ${timeLeft} seconds.`,
-        "error"
-      );
-      
-      // *** HIDE the button and language selector ***
-      convertBtn.classList.add("control-hidden");
-      langSelectWrapper.classList.add("control-hidden");
-
-      // Show and update the timer element
-      rateLimitTimer.classList.add("show");
-      rateLimitTimer.innerHTML = `You can make another request in <strong>${timeLeft}s</strong>.`;
-      
-      clearInterval(countdownInterval);
-
-      countdownInterval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft > 0) {
-          rateLimitTimer.innerHTML = `You can make another request in <strong>${timeLeft}s</strong>.`;
-        } else {
-          clearInterval(countdownInterval);
-          
-          // Hide the timer element
-          rateLimitTimer.classList.remove("show");
-
-          // *** SHOW the button and language selector again ***
-          convertBtn.classList.remove("control-hidden");
-          langSelectWrapper.classList.remove("control-hidden");
-          
-          resetConvertButton();
-        }
-      }, 1000);
-    };
-
-    convertBtn.addEventListener("click", async () => {
-      const code = inputCode.value;
-      const targetLang = targetLangSelect.value;
-
-      if (!code.trim()) {
-        showNotification("Warning", "Please enter some code to convert.", "info");
-        return;
-      }
-      if (code.length > charLimit) {
-        showNotification("Error", `Code exceeds the character limit of ${charLimit}.`, "error");
-        return;
-      }
-
-      convertBtn.disabled = true;
-      convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Converting...</span>';
-      outputCode.value = "";
-      detectedLang.textContent = "Analyzing...";
-
-      try {
-        const response = await fetch("/convert", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ code, targetLang }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          if (response.status === 429) {
-            handleRateLimit(data.retryAfter || 60);
-          } else {
-            throw new Error(data.error || "An unknown server error occurred.");
-          }
-        } else {
-          outputCode.value = data.convertedCode;
-          detectedLang.textContent = data.detectedLang;
-          if (outputCharCount) outputCharCount.textContent = `Characters: ${data.convertedCode.length}`;
-          resetConvertButton();
-        }
-      } catch (error) {
-        showNotification("Conversion Failed", error.message, "error");
-        outputCode.value = "Error during conversion. Please check the console for details.";
-        detectedLang.textContent = "Error";
-        resetConvertButton();
-      }
-    });
 
     function updateCharCount() {
+      if (!inputCode) return;
       const currentLength = inputCode.value.length;
+      const charLimit = 15000;
       inputCharCount.textContent = `${currentLength} / ${charLimit}`;
       inputCharCount.classList.toggle("error", currentLength > charLimit);
     }
@@ -144,19 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (inputCode) {
       inputCode.addEventListener("input", updateCharCount);
       updateCharCount();
-    }
-
-    if (fileInput) {
-      fileInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          inputCode.value = event.target.result;
-          updateCharCount();
-        };
-        reader.readAsText(file);
-      });
     }
 
     if (clearBtn) {
@@ -173,15 +105,15 @@ document.addEventListener("DOMContentLoaded", () => {
           .writeText(outputCode.value)
           .then(() => {
             showNotification("Success", "Code copied to clipboard!", "success");
-            const originalIcon = '<i class="fas fa-copy"></i>';
+            const originalIcon = copyBtn.innerHTML;
             copyBtn.innerHTML = '<i class="fas fa-check"></i>';
             setTimeout(() => {
               copyBtn.innerHTML = originalIcon;
             }, 2000);
           })
-          .catch(() =>
-            showNotification("Error", "Failed to copy code.", "error")
-          );
+          .catch(() => {
+            showNotification("Error", "Failed to copy code.", "error");
+          });
       });
     }
 
@@ -192,18 +124,89 @@ document.addEventListener("DOMContentLoaded", () => {
         if (detectedLang) detectedLang.textContent = "N/A";
       });
     }
+
+    const handleRateLimit = (retryAfter) => {
+      let timeLeft = retryAfter;
+      showNotification(
+        "Rate Limit Reached",
+        `You have made too many requests. Please try again in ${timeLeft} seconds.`,
+        "error"
+      );
+
+      convertBtn.classList.add("control-hidden");
+      if (langSelectWrapper) langSelectWrapper.classList.add("control-hidden");
+
+      rateLimitTimer.classList.add("show");
+      rateLimitTimer.innerHTML = `You can make another request in <strong>${timeLeft}s</strong>.`;
+
+      clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          rateLimitTimer.innerHTML = `You can make another request in <strong>${timeLeft}s</strong>.`;
+        } else {
+          clearInterval(countdownInterval);
+          rateLimitTimer.classList.remove("show");
+          convertBtn.classList.remove("control-hidden");
+          if (langSelectWrapper)
+            langSelectWrapper.classList.remove("control-hidden");
+          resetConvertButton();
+        }
+      }, 1000);
+    };
+
+    convertBtn.addEventListener("click", async () => {
+      const code = inputCode.value;
+      const targetLang = targetLangSelect.value;
+      if (!code.trim()) {
+        showNotification(
+          "Warning",
+          "Please enter some code to convert.",
+          "info"
+        );
+        return;
+      }
+      convertBtn.disabled = true;
+      convertBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> <span>Converting...</span>';
+
+      try {
+        const response = await fetch("/convert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code, targetLang }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          if (response.status === 429) {
+            handleRateLimit(data.retryAfter || 60);
+          } else {
+            throw new Error(data.error || "An unknown server error occurred.");
+          }
+        } else {
+          outputCode.value = data.convertedCode;
+          detectedLang.textContent = data.detectedLang;
+          if (outputCharCount)
+            outputCharCount.textContent = `Characters: ${data.convertedCode.length}`;
+          resetConvertButton();
+        }
+      } catch (error) {
+        showNotification("Conversion Failed", error.message, "error");
+        resetConvertButton();
+      }
+    });
   }
 
-  // --- Modal Notification Logic ---
   const alertModal = document.getElementById("alertModal");
   const alertOverlay = document.getElementById("alertOverlay");
-  const modalIcon = document.getElementById("modalIcon");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalMessage = document.getElementById("modalMessage");
-  const modalCloseBtn = document.getElementById("modalCloseBtn");
 
   function showNotification(title, message, type = "info") {
-    if (!alertModal || !alertOverlay || !modalTitle || !modalMessage || !modalIcon) return;
+    if (!alertModal || !alertOverlay) return;
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+    const modalIcon = document.getElementById("modalIcon");
+
     modalTitle.textContent = title;
     modalMessage.textContent = message;
     alertModal.className = "modal";
@@ -221,6 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
     alertOverlay.classList.add("show");
   }
 
+  window.showNotification = showNotification;
+
   function hideNotification() {
     if (alertModal && alertOverlay) {
       alertModal.classList.remove("show");
@@ -228,19 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
   if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideNotification);
   if (alertOverlay) alertOverlay.addEventListener("click", hideNotification);
-
-  // --- Newsletter Form Logic ---
-  const newsletterForm = document.querySelector(".footer .newsletter-form");
-  if (newsletterForm) {
-    newsletterForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const emailInput = newsletterForm.querySelector('input[type="email"]');
-      if (emailInput && emailInput.value) {
-        showNotification("Thank You!", "You have subscribed to our newsletter.", "success");
-        emailInput.value = "";
-      }
-    });
-  }
 });

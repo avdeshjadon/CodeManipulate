@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Formatter | CodeManipulate</title>
+    <title>Code Minifier | CodeManipulate</title>
     <script>
       (function () {
         const theme = localStorage.getItem("theme");
@@ -13,7 +13,6 @@
       })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/formatter.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,8 +27,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-  </head>
-  <body>
+</head>
+<body>
     <div class="gradient-bg"></div>
     <nav class="navbar">
       <div class="nav-container">
@@ -53,75 +52,57 @@
         </button>
       </div>
     </nav>
+
+    <div id="toolsDrawer" class="tools-drawer">
+      <a href="formatter.html" class="tool-link">Code Formatter</a>
+      <a href="minifier.html" class="tool-link">Code Minifier</a>
+      <a href="#" class="tool-link">JSON Tools</a>
+      <a href="#" class="tool-link">SQL Tools</a>
+    </div>
+
     <main class="container">
-      <section class="hero">
-        <h1>AI-Powered Code Formatter</h1>
-        <p>
-          Clean, format, and beautify your code in seconds. Supports all major
-          languages.
-        </p>
-      </section>
-      <div class="converter">
-        <div class="card input-card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="fas fa-code"></i>
-              Input Code
-            </h2>
-            <div class="input-controls">
-              <button id="clearBtn" class="clear-btn" aria-label="Clear code">
-                <i class="fas fa-times"></i>
-                Clear
-              </button>
+        <section class="hero">
+            <h1>JavaScript Code Minifier</h1>
+            <p>Paste your JavaScript code to compress and optimize it for production.</p>
+        </section>
+        <div class="converter">
+            <div class="card input-card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fab fa-js"></i> Input JavaScript</h2>
+                    <div class="input-controls">
+                        <button id="clearBtn" class="clear-btn"><i class="fas fa-times"></i> Clear</button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <textarea id="inputCode" placeholder="Paste your JavaScript code here..." spellcheck="false"></textarea>
+                </div>
+                <div class="card-footer">
+                    <span id="inputCharCount">Characters: 0</span>
+                </div>
             </div>
-          </div>
-          <div class="card-content">
-            <textarea
-              id="inputCode"
-              placeholder="Paste your code here..."
-              spellcheck="false"
-            ></textarea>
-          </div>
-          <div class="card-footer">
-            <span id="inputCharCount">Characters: 0</span>
-          </div>
-        </div>
-        <div class="card output-card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="fas fa-file-code"></i>
-              Formatted Code
-            </h2>
-            <div class="output-controls">
-              <button id="copyBtn" class="copy-btn" aria-label="Copy code">
-                <i class="fas fa-copy"></i>
-              </button>
+            <div class="card output-card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-file-zipper"></i> Minified Code</h2>
+                    <div class="output-controls">
+                        <button id="copyBtn" class="copy-btn"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <textarea id="outputCode" placeholder="Your minified code will appear here..." readonly spellcheck="false"></textarea>
+                </div>
+                <div class="card-footer">
+                    <span id="outputCharCount">Characters: 0</span>
+                </div>
             </div>
-          </div>
-          <div class="card-content">
-            <textarea
-              id="outputCode"
-              placeholder="Your formatted code will appear here..."
-              readonly
-              spellcheck="false"
-            ></textarea>
-          </div>
-          <div class="card-footer">
-            <span id="outputCharCount">Characters: 0</span>
-          </div>
         </div>
-      </div>
-      <div class="controls">
-        <button id="language-select-btn" class="language-selector">
-          <span id="selected-language-name">HTML</span>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <button id="formatBtn" class="convert-btn">
-          <i class="fas fa-wand-magic-sparkles"></i>
-          <span>Format Code</span>
-        </button>
-      </div>
+        <div class="controls">
+            <button id="minifyBtn" class="convert-btn">
+                <i class="fas fa-compress"></i>
+                <span>Minify Code</span>
+            </button>
+        </div>
     </main>
+
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-newsletter">
@@ -184,7 +165,9 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p class="copyright">&copy; 2025 CodeManipulate. All rights reserved.</p>
+          <p class="copyright">
+            &copy; 2025 CodeManipulate. All rights reserved.
+          </p>
           <p class="made-by">Made with ❤️ by Avdesh Jadon</p>
           <div class="footer-bottom-links">
             <a href="#">Privacy Policy</a>
@@ -193,62 +176,12 @@
         </div>
       </div>
     </footer>
-    <div id="language-modal-overlay" class="modal-overlay"></div>
-    <div id="language-modal" class="modal">
-      <div class="modal-header">
-        <h2>Select Language</h2>
-        <button id="close-modal-btn" class="close-modal-btn">&times;</button>
-      </div>
-      <div class="modal-search">
-        <i class="fas fa-search"></i>
-        <input
-          type="text"
-          id="language-search-input"
-          placeholder="Search for a language..."
-        />
-      </div>
-      <div id="language-list" class="language-list"></div>
+
+    <div id="alertOverlay" class="modal-overlay"></div>
+    <div id="alertModal" class="modal">
     </div>
-    <div id="errorModal" class="modal-overlay">
-      <div class="error-modal-content modal">
-        <div class="modal-header">
-          <span class="modal-icon"><i class="fas fa-times-circle"></i></span>
-          <h3 class="modal-title">Error Formatting Code</h3>
-        </div>
-        <div class="modal-body">
-          <p id="errorMessage">Something went wrong.</p>
-        </div>
-        <div class="modal-footer">
-          <button id="errorCloseBtn" class="modal-btn">Okay</button>
-        </div>
-      </div>
-    </div>
-    <script src="https://unpkg.com/prettier@2.8.8/standalone.js" defer></script>
-    <script
-      src="https://unpkg.com/prettier@2.8.8/parser-html.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/prettier@2.8.8/parser-babel.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/prettier@2.8.8/parser-postcss.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/prettier@2.8.8/parser-markdown.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/prettier@2.8.8/parser-graphql.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/prettier@2.8.8/parser-yaml.js"
-      defer
-    ></script>
+    
     <script src="script/main.js" defer></script>
-    <script src="script/formatter.js" defer></script>
-  </body>
+    <script src="script/minifier.js" defer></script>
+</body>
 </html>
