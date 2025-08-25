@@ -113,6 +113,7 @@
 CHANGELANG/
 ├── images/                          (📁 Contains static images/icons used in the website)
 │   └── favicon.ico                  (🌟 Favicon for the browser tab icon)
+|   └── Screenshot.png               (📁 Website Screenshot )
 │
 ├── node_modules/                    (📁 Installed dependencies via npm; auto-generated folder)
 │
@@ -135,6 +136,8 @@ CHANGELANG/
 ├── package.json                     (📦 Declares project metadata, scripts, and dependencies)
 ├── package-lock.json                (📦 Auto-generated file that locks dependency versions for reproducibility)
 │
+├── LICENSE                          (📝 MIT License)  
+|
 ├── server.js                        (🖥️ Node.js + Express backend server to handle API requests to Gemini)
 └── README.md                        (📘 Documentation about your project, features, usage, etc.)
 
