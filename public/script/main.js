@@ -190,13 +190,25 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code, targetLang }),
         });
+
         const data = await response.json();
+
         if (!response.ok) {
+          // -- MODIFICATION START --
           if (response.status === 429) {
-            handleRateLimit(data.retryAfter || 60);
+            // This is the Redis rate limit for too many requests per minute
+            if (data.retryAfter) {
+              handleRateLimit(data.retryAfter);
+            } else {
+              // This is our new Gemini daily quota limit error
+              showNotification("Daily Quota Reached", data.message, "info");
+              resetConvertButton();
+            }
           } else {
+            // For other errors (like 500), throw to the catch block
             throw new Error(data.error || "An unknown server error occurred.");
           }
+          // -- MODIFICATION END --
         } else {
           outputCode.value = data.convertedCode;
           detectedLang.textContent = data.detectedLang;

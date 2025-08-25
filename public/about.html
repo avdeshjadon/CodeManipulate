@@ -68,10 +68,10 @@
         <a href="minifier.html" class="tool-link"
           ><i class="fas fa-compress"></i> Code Minifier</a
         >
-        <a href="#" class="tool-link"
+        <a href="json.html" class="tool-link"
           ><i class="fas fa-code-merge"></i> JSON Tools</a
         >
-        <a href="#" class="tool-link"
+        <a href="sql.html" class="tool-link"
           ><i class="fas fa-database"></i> SQL Tools</a
         >
       </div>
@@ -695,15 +695,13 @@
               }
             }
           }
-          // Start animation after a short delay
           setTimeout(typeWriter, 1000);
         });
 
-        // Ripple effect for contact button
         document.querySelectorAll(".contact-btn").forEach((button) => {
           button.addEventListener("click", function (e) {
             const ripple = this.querySelector(".btn-ripple");
-            if (!ripple) return; // Make sure ripple element exists
+            if (!ripple) return; 
 
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);

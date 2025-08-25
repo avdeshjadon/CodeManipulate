@@ -93,7 +93,19 @@ ${code}
     res.json(jsonResponse);
   } catch (error) {
     console.error("Error during conversion:", error);
+
+    // -- MODIFICATION START --
+    // Check if the error is specifically a quota error from the Google API
+    if (error.status === 429) {
+      return res.status(429).json({
+        error: "Quota Exceeded",
+        message:
+          "Today's free conversion limit has been reached. Please try again tomorrow.",
+      });
+    }
+    // For all other errors, send a generic 500 error
     res.status(500).json({ error: "Failed to convert code." });
+    // -- MODIFICATION END --
   }
 });
 

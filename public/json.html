@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Translator | CodeManupulate</title>
+    <title>JSON Tools | CodeManipulate</title>
     <script>
       (function () {
         const theme = localStorage.getItem("theme");
@@ -12,8 +12,8 @@
         }
       })();
     </script>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/coming-soon.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,7 +31,6 @@
   </head>
   <body>
     <div class="gradient-bg"></div>
-
     <nav class="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
@@ -42,7 +41,7 @@
           <div class="nav-links">
             <a href="index.html" class="nav-btn">Home</a>
             <a href="about.html" class="nav-btn">About Me</a>
-            <button class="nav-btn" id="allToolsBtn">
+            <button class="nav-btn active" id="allToolsBtn">
               All Tools <i class="fas fa-chevron-down"></i>
             </button>
           </div>
@@ -61,8 +60,7 @@
         </button>
       </div>
     </nav>
-
-    <div id="toolsDrawer" class="tools-drawer">
+    <div id="toolsDrawer" class="tools-drawer show">
       <div class="tools-drawer-content">
         <a href="formatter.html" class="tool-link"
           ><i class="fas fa-align-left"></i> Code Formatter</a
@@ -78,105 +76,22 @@
         >
       </div>
     </div>
-
     <main class="container">
-      <section class="hero anim-group">
-        <h1>Transform Code Between Languages</h1>
+      <section class="coming-soon-section anim-group">
+        <div class="coming-soon-icon">
+          <i class="fas fa-code-merge"></i>
+        </div>
+        <h1>JSON Tools are on the way!</h1>
         <p>
-          AI-powered code conversion with precision and efficiency. Convert code
-          in seconds, not hours.
+          We're busy crafting a powerful suite of JSON utilities, including a
+          validator, formatter, and tree viewer. This feature is launching very
+          soon.
         </p>
+        <a href="index.html" class="back-home-btn">
+          <i class="fas fa-arrow-left"></i> Go Back Home
+        </a>
       </section>
-      <div class="converter anim-group">
-        <div class="card input-card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="fas fa-code"></i>
-              Input Code
-            </h2>
-            <div class="input-controls">
-              <button id="clearBtn" class="clear-btn" aria-label="Clear code">
-                <i class="fas fa-times"></i>
-                Clear
-              </button>
-              <label for="fileInput" class="file-upload">
-                <i class="fas fa-upload"></i>
-                Upload File
-              </label>
-            </div>
-            <input
-              type="file"
-              id="fileInput"
-              accept=".js,.py,.cpp,.c,.java,.ts,.txt,.html,.css,.php,.rb,.go"
-            />
-          </div>
-          <div class="card-content">
-            <textarea
-              id="inputCode"
-              placeholder="Paste your code here..."
-              spellcheck="false"
-            ></textarea>
-          </div>
-          <div class="card-footer">
-            <span id="inputCharCount">0 / 15000</span>
-          </div>
-        </div>
-        <div class="card output-card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="fas fa-file-code"></i>
-              Converted Code
-            </h2>
-            <div class="output-controls">
-              <p>Detected: <span id="detectedLang">N/A</span></p>
-              <button
-                id="clearOutputBtn"
-                class="clear-btn"
-                aria-label="Clear output code"
-              >
-                <i class="fas fa-times"></i>
-              </button>
-              <button id="copyBtn" class="copy-btn" aria-label="Copy code">
-                <i class="fas fa-copy"></i>
-              </button>
-            </div>
-          </div>
-          <div class="card-content">
-            <textarea
-              id="outputCode"
-              placeholder="Your converted code will appear here..."
-              readonly
-              spellcheck="false"
-            ></textarea>
-          </div>
-          <div class="card-footer">
-            <span id="outputCharCount">Characters: 0</span>
-          </div>
-        </div>
-      </div>
-      <div class="controls anim-group">
-        <div class="select-wrapper">
-          <select id="targetLang">
-            <option value="Python">Python</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="TypeScript">TypeScript</option>
-            <option value="C++">C++</option>
-            <option value="C">C</option>
-            <option value="Java">Java</option>
-            <option value="Go">Go</option>
-            <option value="Rust">Rust</option>
-            <option value="PHP">PHP</option>
-            <option value="Ruby">Ruby</option>
-          </select>
-        </div>
-        <button id="convertBtn" class="convert-btn">
-          <i class="fas fa-wand-magic-sparkles"></i>
-          <span>Convert Code</span>
-        </button>
-        <div id="rateLimitTimer" class="rate-limit-timer"></div>
-      </div>
     </main>
-
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-newsletter">
@@ -248,20 +163,7 @@
         </div>
       </div>
     </footer>
-
-    <div id="alertOverlay" class="modal-overlay"></div>
-    <div id="alertModal" class="modal">
-      <div class="modal-header">
-        <span id="modalIcon" class="modal-icon"></span>
-        <h3 id="modalTitle" class="modal-title"></h3>
-      </div>
-      <div class="modal-body">
-        <p id="modalMessage"></p>
-      </div>
-      <div class="modal-footer">
-        <button id="modalCloseBtn" class="modal-btn">OK</button>
-      </div>
-    </div>
     <script src="script/main.js" defer></script>
+    <script src="script/json.js" defer></script>
   </body>
 </html>
