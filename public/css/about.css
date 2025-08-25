@@ -752,8 +752,13 @@
   .footer-content {
     flex-direction: column;
     gap: 1rem;
+    text-align: center;
   }
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+  .hero-main,
+  .title-main {
+    font-size: 2rem;
   }
 }
