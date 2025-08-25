@@ -524,24 +524,6 @@
     <script src="script/main.js" defer></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Intersection Observer for animations
-        const animatedElements = document.querySelectorAll(".anim-group");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              }
-            });
-          },
-          {
-            threshold: 0.1,
-            rootMargin: "50px",
-          }
-        );
-        animatedElements.forEach((el) => observer.observe(el));
-
-        // Typing animation
         const typingText = document.querySelector(".typing-text");
         const text = typingText.dataset.text;
         let index = 0;
@@ -556,7 +538,6 @@
 
         setTimeout(typeWriter, 1000);
 
-        // Ripple effect for buttons
         document.querySelectorAll(".contact-btn").forEach((button) => {
           button.addEventListener("click", function (e) {
             const ripple = this.querySelector(".btn-ripple");

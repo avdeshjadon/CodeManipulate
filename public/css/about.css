@@ -422,7 +422,7 @@
 /* Skills Grid */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* MODIFIED */
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -704,18 +704,6 @@
   transform: translateX(-5px);
 }
 
-/* Animation Classes */
-.anim-group {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.anim-group.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .about-sidebar .anim-group:nth-child(1) {
   transition-delay: 0.1s;
 }
@@ -755,7 +743,6 @@
   .profile-card {
     grid-column: 1 / -1;
   }
-  /* The 2-column layout is now default, so we only need the 1-column rule for smaller screens */
 }
 
 @media (max-width: 768px) {

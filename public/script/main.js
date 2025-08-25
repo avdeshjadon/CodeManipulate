@@ -27,23 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const allToolsBtn = document.getElementById("allToolsBtn");
   const toolsDrawer = document.getElementById("toolsDrawer");
-  const mainContainer = document.querySelector(".container");
 
-  if (allToolsBtn && toolsDrawer && mainContainer) {
+  if (allToolsBtn && toolsDrawer) {
     allToolsBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const isDrawerOpen = toolsDrawer.classList.toggle("show");
+      toolsDrawer.classList.toggle("show");
       allToolsBtn.classList.toggle("active");
-
-      if (isDrawerOpen) {
-        document.documentElement.style.setProperty(
-          "--drawer-height",
-          `${toolsDrawer.scrollHeight}px`
-        );
-        mainContainer.classList.add("content-shifted");
-      } else {
-        mainContainer.classList.remove("content-shifted");
-      }
     });
 
     document.addEventListener("click", (e) => {
@@ -51,11 +40,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (toolsDrawer.classList.contains("show")) {
           toolsDrawer.classList.remove("show");
           allToolsBtn.classList.remove("active");
-          mainContainer.classList.remove("content-shifted");
         }
       }
     });
   }
+
+  const animatedElements = document.querySelectorAll(".anim-group");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+  animatedElements.forEach((el) => observer.observe(el));
 
   const convertBtn = document.getElementById("convertBtn");
   if (convertBtn) {
@@ -259,7 +262,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navLinks.forEach((link) => {
       const linkHref = link.getAttribute("href");
-      if (linkHref && currentPath.endsWith(linkHref)) {
+      if (
+        (currentPath.endsWith("/") && linkHref === "index.html") ||
+        (linkHref && currentPath.endsWith(linkHref))
+      ) {
         link.classList.add("active");
       }
     });
