@@ -2,11 +2,14 @@ const express = require("express");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path");
 
 dotenv.config();
 
 const app = express();
 const port = 3000;
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
@@ -31,36 +34,21 @@ app.post("/convert", async (req, res) => {
     });
 
     const prompt = `
-
 You are an expert code converter.
-
 Your task is to analyze the provided code snippet, identify its programming language, and then convert it to the specified target language.
 
-
-
 Follow these instructions precisely:
-
 1. **Analyze the code**: Determine the source language of the code below.
-
 2. **Convert the code**: Translate the code to ${targetLang}. Ensure the logic remains identical.
-
 3. **Format the output**: Respond ONLY with a valid JSON object. Do not include any text, explanation, or markdown formatting before or after the JSON object.
-
 The JSON object must have two keys:
-
 - "detectedLang": A string with the name of the detected source language.
-
 - "convertedCode": A string containing only the converted code.
 
-
 Here is the code to process:
-
 \`\`\`
-
 ${code}
-
 \`\`\`
-
 `;
 
     const result = await model.generateContent(prompt);

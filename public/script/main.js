@@ -17,20 +17,76 @@ document.addEventListener("DOMContentLoaded", () => {
   applyTheme(savedTheme);
 
   function toggleTheme() {
-    const newTheme = docElement.classList.contains("dark-mode")
-      ? "light"
-      : "dark";
+    const newTheme = docElement.classList.contains("dark-mode") ? "light" : "dark";
     applyTheme(newTheme);
   }
 
   if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
+  // --- Start of Code Translator Logic ---
   const convertBtn = document.getElementById("convertBtn");
   if (convertBtn) {
     const fileInput = document.getElementById("fileInput");
     const inputCode = document.getElementById("inputCode");
+    const outputCode = document.getElementById("outputCode");
+    const targetLangSelect = document.getElementById("targetLang");
+    const detectedLang = document.getElementById("detectedLang");
     const inputCharCount = document.getElementById("inputCharCount");
+    const outputCharCount = document.getElementById("outputCharCount");
+    const clearBtn = document.getElementById("clearBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const clearOutputBtn = document.getElementById("clearOutputBtn");
     const charLimit = 5000;
+
+    // --- CORE LOGIC THAT WAS MISSING ---
+    convertBtn.addEventListener("click", async () => {
+      const code = inputCode.value;
+      const targetLang = targetLangSelect.value;
+
+      if (!code.trim()) {
+        showNotification("Warning", "Please enter some code to convert.", "info");
+        return;
+      }
+      if (code.length > charLimit) {
+        showNotification("Error", `Code exceeds the character limit of ${charLimit}.`, "error");
+        return;
+      }
+
+      convertBtn.disabled = true;
+      convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Converting...</span>';
+      outputCode.value = "";
+      detectedLang.textContent = "Analyzing...";
+
+
+      try {
+        const response = await fetch("/convert", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code, targetLang }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || "An unknown server error occurred.");
+        }
+
+        const data = await response.json();
+        outputCode.value = data.convertedCode;
+        detectedLang.textContent = data.detectedLang;
+        if (outputCharCount) outputCharCount.textContent = `Characters: ${data.convertedCode.length}`;
+
+      } catch (error) {
+        showNotification("Conversion Failed", error.message, "error");
+        outputCode.value = "Error during conversion. Please check the console for details.";
+        detectedLang.textContent = "Error";
+      } finally {
+        convertBtn.disabled = false;
+        convertBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> <span>Convert Code</span>';
+      }
+    });
+    // --- END OF CORE LOGIC ---
 
     function updateCharCount() {
       const currentLength = inputCode.value.length;
@@ -56,19 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    const clearBtn = document.getElementById("clearBtn");
     if (clearBtn) {
       clearBtn.addEventListener("click", () => {
         inputCode.value = "";
         updateCharCount();
       });
     }
-
-    const copyBtn = document.getElementById("copyBtn");
-    const outputCode = document.getElementById("outputCode");
-    const outputCharCount = document.getElementById("outputCharCount");
-    const clearOutputBtn = document.getElementById("clearOutputBtn");
-    const detectedLang = document.getElementById("detectedLang");
 
     if (copyBtn) {
       copyBtn.addEventListener("click", () => {
@@ -98,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // --- Modal Notification Logic ---
   const alertModal = document.getElementById("alertModal");
   const alertOverlay = document.getElementById("alertOverlay");
   const modalIcon = document.getElementById("modalIcon");
@@ -106,14 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalCloseBtn = document.getElementById("modalCloseBtn");
 
   function showNotification(title, message, type = "info") {
-    if (
-      !alertModal ||
-      !alertOverlay ||
-      !modalTitle ||
-      !modalMessage ||
-      !modalIcon
-    )
-      return;
+    if (!alertModal || !alertOverlay || !modalTitle || !modalMessage || !modalIcon) return;
     modalTitle.textContent = title;
     modalMessage.textContent = message;
     alertModal.className = "modal";
@@ -141,19 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideNotification);
   if (alertOverlay) alertOverlay.addEventListener("click", hideNotification);
 
-  const newsletterForm = document.querySelector(
-    ".footer-section .newsletter-form"
-  );
+  // --- Newsletter Form Logic ---
+  const newsletterForm = document.querySelector(".footer .newsletter-form");
   if (newsletterForm) {
     newsletterForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const emailInput = newsletterForm.querySelector('input[type="email"]');
       if (emailInput && emailInput.value) {
-        showNotification(
-          "Thank You!",
-          "You have subscribed to our newsletter.",
-          "success"
-        );
+        showNotification("Thank You!", "You have subscribed to our newsletter.", "success");
         emailInput.value = "";
       }
     });
