@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me | CodeManipulate</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="gradient-bg"></div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          CodeManipulate
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-btn">Home</a>
+          <a href="about.html" class="nav-btn">About Me</a>
+          <button class="nav-btn" id="allToolsBtn">
+            All Tools <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+    <div id="toolsDrawer" class="tools-drawer">
+      <div class="tools-drawer-content">
+        <a href="formatter.html" class="tool-link"
+          ><i class="fas fa-align-left"></i> Code Formatter</a
+        >
+        <a href="minifier.html" class="tool-link"
+          ><i class="fas fa-compress"></i> Code Minifier</a
+        >
+        <a href="#" class="tool-link"
+          ><i class="fas fa-code-merge"></i> JSON Tools</a
+        >
+        <a href="#" class="tool-link"
+          ><i class="fas fa-database"></i> SQL Tools</a
+        >
+      </div>
+    </div>
+    <main class="container">
+      <header class="about-header">
+        <div class="profile-pic">
+          <img src="images/profile.jpg" alt="Avdesh Jadon" />
+        </div>
+        <div class="profile-intro">
+          <h1>Avdesh Jadon</h1>
+          <p class="subtitle">
+            B.Tech Student, Full-Stack Developer & Automation Enthusiast
+          </p>
+          <div class="info-tags">
+            <span><i class="fas fa-map-marker-alt"></i> India</span>
+            <span><i class="fas fa-book-open"></i> 5th Semester</span>
+            <span
+              ><i class="fas fa-bullseye"></i> Targeting Product-Based
+              Companies</span
+            >
+          </div>
+        </div>
+      </header>
+
+      <section class="about-section">
+        <h2><i class="fas fa-user-circle"></i> Who I Am</h2>
+        <p>
+          I'm a passionate and driven developer with an obsession for building
+          impactful projects, mastering code, and contributing to the tech
+          ecosystem. My routine is centered around development, exploring new
+          technologies, and preparing for future-ready opportunities. I
+          consciously avoid distractions, channeling my full energy into
+          learning and professional growth.
+        </p>
+      </section>
+
+      <section class="about-section">
+        <h2><i class="fas fa-cogs"></i> Skills & Expertise</h2>
+        <div class="skills-list">
+          <span>Full Stack Development</span>
+          <span>DSA in C++</span>
+          <span>Telegram Bots</span>
+          <span>Firebase</span>
+          <span>Cloudinary</span>
+          <span>Playwright / Selenium</span>
+          <span>Flask</span>
+          <span>Aria2 & ffmpeg</span>
+          <span>Pyrogram / Aiogram</span>
+          <span>AI & Stable Diffusion</span>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2><i class="fas fa-project-diagram"></i> Signature Projects</h2>
+        <div class="project-grid">
+          <div class="project-card">
+            <h3>ComixAll – NSFW Comic Reader</h3>
+            <p>
+              A full-stack comic reader website with an admin panel to upload
+              and manage content using Firebase and Cloudinary.
+            </p>
+            <a href="https://github.com/avdeshjadon/comixall" target="_blank"
+              >View Project <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="project-card">
+            <h3>TeraBox Telegram Downloader</h3>
+            <p>
+              A powerful bot that downloads large files from terabox.app using
+              Playwright, Aria2, Flask, and ffmpeg.
+            </p>
+            <a
+              href="https://github.com/avdeshjadon/terabox-downloader"
+              target="_blank"
+              >View Project <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="project-card">
+            <h3>CodeLangConvert AI</h3>
+            <p>
+              A web app that converts code between languages, built with
+              Node.js, Firebase, and a modern UI/UX.
+            </p>
+            <a
+              href="https://github.com/avdeshjadon/code-lang-converter"
+              target="_blank"
+              >View Project <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="project-card">
+            <h3>JS Obfuscator Tool</h3>
+            <p>
+              A web-based tool to obfuscate and minify JavaScript files with
+              drag-and-drop support and a live preview.
+            </p>
+            <a
+              href="https://github.com/avdeshjadon/js-obfuscator-tool"
+              target="_blank"
+              >View Project <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2><i class="fas fa-rocket"></i> Career Goals</h2>
+        <p>
+          My primary objective is to secure a position at a top-tier
+          product-based company by strengthening my DSA and system design
+          skills. Alongside my academic and interview preparation, I am
+          committed to developing and launching scalable side projects, with a
+          keen focus on automation, robust web platforms, and innovative AI
+          integrations.
+        </p>
+      </section>
+
+      <section class="about-section">
+        <h2><i class="fas fa-envelope"></i> Get in Touch</h2>
+        <p>
+          The best way to connect with me is through my GitHub profile. I'm
+          always open to discussing technology, projects, and collaboration
+          opportunities.
+        </p>
+        <a
+          href="https://github.com/avdeshjadon"
+          class="contact-btn"
+          target="_blank"
+        >
+          <i class="fab fa-github"></i> Visit my GitHub
+        </a>
+      </section>
+    </main>
+
+    <footer class="simple-footer">
+      <p>
+        &copy; 2025 Avdesh Jadon |
+        <a href="index.html">Back to CodeManipulate</a>
+      </p>
+    </footer>
+
+    <script src="script/main.js" defer></script>
+  </body>
+</html>

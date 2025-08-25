@@ -236,4 +236,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalCloseBtn = document.getElementById("modalCloseBtn");
   if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideNotification);
   if (alertOverlay) alertOverlay.addEventListener("click", hideNotification);
+
+  const newsletterForm = document.querySelector(".footer .newsletter-form");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = newsletterForm.querySelector('input[type="email"]');
+      if (emailInput && emailInput.value) {
+        showNotification(
+          "Thank You!",
+          "You have subscribed to our newsletter.",
+          "success"
+        );
+        emailInput.value = "";
+      }
+    });
+  }
+
+  function setActiveNavLink() {
+    const navLinks = document.querySelectorAll(".nav-links .nav-btn");
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach((link) => {
+      const linkHref = link.getAttribute("href");
+      if (linkHref && currentPath.endsWith(linkHref)) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  setActiveNavLink();
 });

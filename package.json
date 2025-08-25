@@ -3,9 +3,11 @@
     "@google/generative-ai": "^0.24.1",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "csso": "^5.0.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-rate-limit": "^8.0.1",
+    "html-minifier-terser": "^7.2.0",
     "redis": "^5.8.2",
     "uglify-js": "^3.19.3"
   }

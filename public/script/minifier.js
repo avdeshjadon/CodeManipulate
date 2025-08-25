@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copyBtn");
     const inputCharCount = document.getElementById("inputCharCount");
     const outputCharCount = document.getElementById("outputCharCount");
+    const languageSelector = document.getElementById("languageSelector");
+
     const modalAlerter = window.showNotification || ((title, msg) => alert(`${title}: ${msg}`));
 
     function updateCounts() {
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inputCharCount.textContent = `Characters: ${inputLength}`;
         outputCharCount.textContent = `Characters: ${outputLength}`;
 
-        if (inputLength > 0 && outputLength > 0) {
+        if (inputLength > 0 && outputLength > 0 && outputLength < inputLength) {
             const saved = inputLength - outputLength;
             const percentage = ((saved / inputLength) * 100).toFixed(2);
             modalAlerter("Success!", `Saved ${saved} characters (${percentage}% reduction).`, "success");
@@ -25,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     minifyBtn.addEventListener("click", async () => {
         const code = inputCodeEl.value;
+        const language = languageSelector.value;
+
         if (!code.trim()) {
             modalAlerter("Warning", "Please enter some code to minify.", "info");
             return;
@@ -37,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch("/minify", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code }),
+                body: JSON.stringify({ code, language }),
             });
 
             const data = await response.json();
@@ -72,6 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 copyBtn.innerHTML = originalText;
             }, 2000);
         });
+    });
+    
+    languageSelector.addEventListener("change", () => {
+        const selectedLanguage = languageSelector.options[languageSelector.selectedIndex].text;
+        inputCodeEl.placeholder = `Paste your ${selectedLanguage} code here...`;
     });
 
     inputCodeEl.addEventListener("input", updateCounts);

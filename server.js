@@ -5,6 +5,8 @@ const cors = require("cors");
 const path = require("path");
 const redis = require("redis");
 const UglifyJS = require("uglify-js");
+const { minify: minifyCss } = require("csso");
+const { minify: minifyHtml } = require("html-minifier-terser");
 
 dotenv.config();
 
@@ -12,7 +14,7 @@ const app = express();
 const port = 3000;
 
 const redisClient = redis.createClient({
-  url: process.env.REDIS_URL
+  url: process.env.REDIS_URL,
 });
 
 redisClient.on("error", (err) => console.log("Redis Client Error", err));
@@ -95,16 +97,36 @@ ${code}
   }
 });
 
-app.post("/minify", (req, res) => {
-  const { code } = req.body;
-  if (!code) {
-    return res.status(400).json({ error: "Code is required." });
+app.post("/minify", async (req, res) => {
+  const { code, language } = req.body;
+
+  if (!code || !language) {
+    return res.status(400).json({ error: "Code and language are required." });
   }
-  const result = UglifyJS.minify(code);
-  if (result.error) {
-    return res.status(400).json({ error: result.error.message });
+
+  try {
+    let minifiedCode;
+    if (language === "javascript") {
+      const result = UglifyJS.minify(code);
+      if (result.error) throw result.error;
+      minifiedCode = result.code;
+    } else if (language === "css") {
+      const result = minifyCss(code);
+      minifiedCode = result.css;
+    } else if (language === "html") {
+      minifiedCode = await minifyHtml(code, {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyCSS: true,
+        minifyJS: true,
+      });
+    } else {
+      return res.status(400).json({ error: "Unsupported language." });
+    }
+    res.json({ minifiedCode });
+  } catch (error) {
+    res.status(400).json({ error: error.message || "Minification failed." });
   }
-  res.json({ minifiedCode: result.code });
 });
 
 app.listen(port, () => {
