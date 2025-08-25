@@ -13,7 +13,7 @@
 - 🧹 **Format** code neatly for supported languages (see below).
 - 📂 Supports **.js, .py, .cpp, .ts, .json**, and more file uploads.
 - 🌗 **Light & Dark Mode** for easy reading.
-- 🌐 Fully hosted on **GitHub Pages**: [Visit WebPage](https://avdeshjadon.github.io/CodeManipulate)
+- 🌐 Fully hosted on **GitHub Pages**.
 
 ---
 
@@ -76,7 +76,7 @@ CHANGELANG/
 
 ## 📸 Screenshots
 
-### 🔽 Language Selection Popup
+### 🔽 Website Look
 ![Language Selection](./images/Screenshot.png)
 
 ---
