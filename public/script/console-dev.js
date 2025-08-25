@@ -24,3 +24,4 @@ console.log("%c╚═════╝ ╚══════╝  ╚═══╝  
 
 console.log("%cAvdesh Jadon", nameStyle);
 console.log("%cDeveloped with ❤️", styles);
+console.log("%cKindly use console for debugging purpose only", "color: #6b7280; font-style: italic; font-size: 0.9rem;");
