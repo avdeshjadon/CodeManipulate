@@ -37,8 +37,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copyBtn");
     const clearOutputBtn = document.getElementById("clearOutputBtn");
     const charLimit = 15000;
+    
+    // *** NEW: Get reference to the language selector wrapper ***
+    const langSelectWrapper = document.querySelector(".select-wrapper");
+    const rateLimitTimer = document.getElementById("rateLimitTimer");
+    let countdownInterval;
 
-    // --- CORE LOGIC THAT WAS MISSING ---
+    const resetConvertButton = () => {
+      convertBtn.disabled = false;
+      convertBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> <span>Convert Code</span>';
+    };
+    
+    // *** UPDATED: This function now hides the controls ***
+    const handleRateLimit = (retryAfter) => {
+      let timeLeft = retryAfter;
+      showNotification(
+        "Rate Limit Reached",
+        `You have made too many requests. Please try again in ${timeLeft} seconds.`,
+        "error"
+      );
+      
+      // *** HIDE the button and language selector ***
+      convertBtn.classList.add("control-hidden");
+      langSelectWrapper.classList.add("control-hidden");
+
+      // Show and update the timer element
+      rateLimitTimer.classList.add("show");
+      rateLimitTimer.innerHTML = `You can make another request in <strong>${timeLeft}s</strong>.`;
+      
+      clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          rateLimitTimer.innerHTML = `You can make another request in <strong>${timeLeft}s</strong>.`;
+        } else {
+          clearInterval(countdownInterval);
+          
+          // Hide the timer element
+          rateLimitTimer.classList.remove("show");
+
+          // *** SHOW the button and language selector again ***
+          convertBtn.classList.remove("control-hidden");
+          langSelectWrapper.classList.remove("control-hidden");
+          
+          resetConvertButton();
+        }
+      }, 1000);
+    };
+
     convertBtn.addEventListener("click", async () => {
       const code = inputCode.value;
       const targetLang = targetLangSelect.value;
@@ -57,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
       outputCode.value = "";
       detectedLang.textContent = "Analyzing...";
 
-
       try {
         const response = await fetch("/convert", {
           method: "POST",
@@ -67,26 +113,27 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ code, targetLang }),
         });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || "An unknown server error occurred.");
-        }
-
         const data = await response.json();
-        outputCode.value = data.convertedCode;
-        detectedLang.textContent = data.detectedLang;
-        if (outputCharCount) outputCharCount.textContent = `Characters: ${data.convertedCode.length}`;
 
+        if (!response.ok) {
+          if (response.status === 429) {
+            handleRateLimit(data.retryAfter || 60);
+          } else {
+            throw new Error(data.error || "An unknown server error occurred.");
+          }
+        } else {
+          outputCode.value = data.convertedCode;
+          detectedLang.textContent = data.detectedLang;
+          if (outputCharCount) outputCharCount.textContent = `Characters: ${data.convertedCode.length}`;
+          resetConvertButton();
+        }
       } catch (error) {
         showNotification("Conversion Failed", error.message, "error");
         outputCode.value = "Error during conversion. Please check the console for details.";
         detectedLang.textContent = "Error";
-      } finally {
-        convertBtn.disabled = false;
-        convertBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> <span>Convert Code</span>';
+        resetConvertButton();
       }
     });
-    // --- END OF CORE LOGIC ---
 
     function updateCharCount() {
       const currentLength = inputCode.value.length;

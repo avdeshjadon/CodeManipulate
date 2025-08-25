@@ -3,20 +3,65 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const redis = require("redis");
 
-dotenv.config();
+dotenv.config(); // Yeh .env file se aapka REDIS_URL load karta hai
 
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
+// --- Upstash Cloud URL se Connection ---
+const redisClient = redis.createClient({
+  url: process.env.REDIS_URL // Ensure this is rediss://...
+});
+// ----------------------------------------
 
+redisClient.on("error", (err) => console.log("Redis Client Error", err));
+
+(async () => {
+  await redisClient.connect();
+  console.log("Connected to Upstash Redis successfully!");
+})();
+
+const RATE_LIMIT_WINDOW_SECONDS = 60;
+const MAX_REQUESTS_PER_WINDOW = 5;
+
+app.set("trust proxy", 1);
+
+// --- Redis Rate Limiter ---
+const rateLimiter = async (req, res, next) => {
+  const ip = req.ip;
+
+  try {
+    const requestCount = await redisClient.incr(ip);
+
+    if (requestCount === 1) {
+      await redisClient.expire(ip, RATE_LIMIT_WINDOW_SECONDS);
+    }
+    
+    if (requestCount > MAX_REQUESTS_PER_WINDOW) {
+      const ttl = await redisClient.ttl(ip);
+      return res.status(429).json({
+        error: "Too Many Requests",
+        message: `You have exceeded the limit of ${MAX_REQUESTS_PER_WINDOW} requests per minute.`,
+        retryAfter: ttl,
+      });
+    }
+
+    next();
+  } catch (error) {
+    console.error("Redis error:", error);
+    next();
+  }
+};
+
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-app.post("/convert", async (req, res) => {
+app.post("/convert", rateLimiter, async (req, res) => {
   try {
     const { code, targetLang } = req.body;
 
@@ -54,9 +99,7 @@ ${code}
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-
     const jsonResponse = JSON.parse(text);
-
     res.json(jsonResponse);
   } catch (error) {
     console.error("Error during conversion:", error);

@@ -805,3 +805,21 @@ textarea:focus {
     display: none;
   }
 }
+.rate-limit-timer {
+  display: none; /* Hidden by default */
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.rate-limit-timer.show {
+  display: block; /* Make it visible when the 'show' class is added */
+  opacity: 1;
+}
+.control-hidden {
+  display: none;
+}
