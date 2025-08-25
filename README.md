@@ -1,6 +1,6 @@
 # 🔄 CodeManipulate — AI-Powered Code Language Converter & Formatter
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://avdeshjadon.github.io/CHANGELANG)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://avdeshjadon.github.io/CodeManipulate)
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green)](https://nodejs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-v4.18-blue)](https://expressjs.com/)
 [![Google AI](https://img.shields.io/badge/Google%20AI-Gemini-orange)](https://ai.google.dev/)
@@ -110,7 +110,7 @@
 ## 📦 Detailed Project Structure
 
 ```
-CHANGELANG/
+CodeManipulate/
 ├── images/                          (📁 Contains static images/icons used in the website)
 │   └── favicon.ico                  (🌟 Favicon for the browser tab icon)
 |   └── Screenshot.png               (📁 Website Screenshot )
@@ -164,8 +164,8 @@ CHANGELANG/
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/avdeshjadon/CHANGELANG.git
-   cd CHANGELANG
+   git clone https://github.com/avdeshjadon/CodeManipulate.git
+   cd CodeManipulate
    ```
 
 2. **Install Dependencies**
@@ -323,7 +323,7 @@ We welcome contributions from developers of all skill levels! Here's how you can
 
 1. **Fork the Repository**
    ```bash
-   git fork https://github.com/avdeshjadon/CHANGELANG.git
+   git fork https://github.com/avdeshjadon/CodeManipulate.git
    ```
 
 2. **Create a Feature Branch**
@@ -401,9 +401,9 @@ SOFTWARE.
 ## 📞 Contact & Support
 
 - **Developer**: [Avdesh Jadon](https://github.com/avdeshjadon)
-- **Project Repository**: [CodeManipulate on GitHub](https://github.com/avdeshjadon/CHANGELANG)
-- **Live Demo**: [Try CodeManipulate](https://avdeshjadon.github.io/CHANGELANG)
-- **Issues & Bug Reports**: [GitHub Issues](https://github.com/avdeshjadon/CHANGELANG/issues)
+- **Project Repository**: [CodeManipulate on GitHub](https://github.com/avdeshjadon/CodeManipulate)
+- **Live Demo**: [Try CodeManipulate](https://avdeshjadon.github.io/CodeManipulate)
+- **Issues & Bug Reports**: [GitHub Issues](https://github.com/avdeshjadon/CodeManipulate/issues)
 
 ---
 
@@ -429,7 +429,7 @@ Join our growing community of contributors and help make coding easier for every
 
 ### 🚀 **Ready to Transform Your Code?**
 
-**[🌐 Try CodeManipulate Now](https://avdeshjadon.github.io/CHANGELANG)**
+**[🌐 Try CodeManipulate Now](https://avdeshjadon.github.io/CodeManipulate)**
 
 </div>
 
