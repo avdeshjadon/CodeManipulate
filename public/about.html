@@ -32,34 +32,34 @@
   <body>
     <div class="gradient-bg"></div>
     <nav class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo">
-      <i class="fas fa-code logo-icon"></i>
-      CodeManipulate
-    </a>
-    <div class="nav-menu">
-        <div class="nav-links">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          CodeManipulate
+        </a>
+        <div class="nav-menu">
+          <div class="nav-links">
             <a href="index.html" class="nav-btn">Home</a>
             <a href="about.html" class="nav-btn">About Me</a>
             <button class="nav-btn" id="allToolsBtn">
-                All Tools <i class="fas fa-chevron-down"></i>
+              All Tools <i class="fas fa-chevron-down"></i>
             </button>
-        </div>
-        <button
+          </div>
+          <button
             class="theme-toggle"
             id="themeToggle"
             aria-label="Toggle dark mode"
-        >
+          >
             <i class="fas fa-moon"></i>
+          </button>
+        </div>
+        <button class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </button>
-    </div>
-    <button class="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-  </div>
-</nav>
+      </div>
+    </nav>
     <div id="toolsDrawer" class="tools-drawer">
       <div class="tools-drawer-content">
         <a href="formatter.html" class="tool-link"
@@ -155,11 +155,11 @@
             </a>
             <div class="social-stats">
               <div class="stat-item">
-                <span class="stat-number">15+</span>
+                <span class="stat-number">10+</span>
                 <span class="stat-label">Projects</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number">3+</span>
+                <span class="stat-number">2+</span>
                 <span class="stat-label">Years Coding</span>
               </div>
             </div>
@@ -171,9 +171,13 @@
             <div class="hero-content">
               <h1 class="hero-title">
                 <span class="hero-greeting">Hey there! 👋</span>
-                <span class="hero-main"
-                  >I'm passionate about crafting digital experiences</span
-                >
+                <span class="hero-main">
+                  <span
+                    class="typing-text"
+                    data-text="I'm passionate about crafting digital experiences"
+                  ></span>
+                  <span class="cursor">|</span>
+                </span>
               </h1>
               <div class="hero-highlights">
                 <span class="highlight-item">🚀 Problem Solver</span>
@@ -195,13 +199,12 @@
             </h2>
             <div class="story-content">
               <p class="story-paragraph">
-                I'm a passionate B.Tech student and enthusiastic full-stack
+                I'm a passionate B.Tech student and enthusiastic Software
                 developer who lives and breathes code. My journey in tech began
                 with curiosity and quickly evolved into a deep obsession for
                 building real-world, impactful software. Whether it's developing
-                smart automation tools, crafting scalable full-stack apps, or
-                contributing to open-source projects, I thrive when I'm building
-                solutions that make a difference.
+                smart automation tools, crafting scalable full-stack apps, I
+                thrive when I'm building solutions that make a difference.
               </p>
               <p class="story-paragraph">
                 Every single day, I dedicate myself to learning and leveling up
@@ -380,25 +383,36 @@
                   <div class="project-icon">
                     <i class="fas fa-book-reader"></i>
                   </div>
-                  <a
-                    href="https://github.com/avdeshjadon/comixall"
-                    target="_blank"
-                    class="project-link"
-                  >
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
+                  <div class="project-links">
+                    <a
+                      href="your-live-link.com"
+                      target="_blank"
+                      class="project-btn live-btn"
+                    >
+                      <i class="fas fa-bolt"></i> Live View
+                    </a>
+                    <a
+                      href="https://github.com/avdeshjadon/comixall"
+                      target="_blank"
+                      class="project-btn github-btn"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">ComixAll — NSFW Comic Reader</h3>
+                  <h3 class="project-title">ComixAll — Comic Reader</h3>
                   <p class="project-description">
-                    A full-stack comic reader website with an admin panel to
-                    upload and manage content, featuring a dynamic, folder-based
-                    reading system.
+                    A full-stack comic reader web app with a dedicated admin
+                    panel for content management. Features a dynamic,
+                    folder-based reading experience for seamless navigation.
                   </p>
                   <div class="tech-stack">
                     <span class="tech-tag">Firebase</span>
                     <span class="tech-tag">Cloudinary</span>
-                    <span class="tech-tag">HTML/CSS/JS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
                   </div>
                 </div>
               </div>
@@ -406,28 +420,70 @@
               <div class="project-card">
                 <div class="project-header">
                   <div class="project-icon">
-                    <i class="fas fa-download"></i>
+                    <i class="fas fa-keyboard"></i>
                   </div>
-                  <a
-                    href="https://github.com/avdeshjadon/terabox-downloader"
-                    target="_blank"
-                    class="project-link"
-                  >
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
+                  <div class="project-links">
+                    <a
+                      href="your-live-link.com"
+                      target="_blank"
+                      class="project-btn live-btn"
+                    >
+                      <i class="fas fa-bolt"></i> Live View
+                    </a>
+                    <a
+                      href="https://github.com/avdeshjadon/Touch-Typing"
+                      target="_blank"
+                      class="project-btn github-btn"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">TeraBox Telegram Downloader</h3>
+                  <h3 class="project-title">Touch Typing Trainer</h3>
                   <p class="project-description">
-                    A powerful bot that downloads large files from terabox.app,
-                    handling redirects and dynamic links using browser
-                    automation.
+                    A minimal and responsive web app designed to help users
+                    master touch typing. Features progressive exercises for all
+                    key rows to improve speed and accuracy, with performance
+                    tracking.
                   </p>
                   <div class="tech-stack">
-                    <span class="tech-tag">Playwright</span>
-                    <span class="tech-tag">Aria2</span>
-                    <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">ffmpeg</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-header">
+                  <div class="project-icon">
+                    <i class="fas fa-window-restore"></i>
+                  </div>
+                  <div class="project-links">
+                    <a
+                      href="https://github.com/avdeshjadon/WebIn"
+                      target="_blank"
+                      class="project-btn github-btn"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3 class="project-title">WebIn - Chrome Extension</h3>
+                  <p class="project-description">
+                    A lightweight Chrome Extension providing a draggable,
+                    floating overlay for instant access to your favorite web
+                    tools. Boosts productivity by keeping essential sites just a
+                    shortcut away.
+                  </p>
+                  <div class="tech-stack">
+                    <span class="tech-tag">Chrome Extension</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
                   </div>
                 </div>
               </div>
@@ -437,25 +493,111 @@
                   <div class="project-icon">
                     <i class="fas fa-code"></i>
                   </div>
-                  <a
-                    href="https://github.com/avdeshjadon/code-lang-converter"
-                    target="_blank"
-                    class="project-link"
-                  >
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
+                  <div class="project-links">
+                    <a
+                      href="your-live-link.com"
+                      target="_blank"
+                      class="project-btn live-btn"
+                    >
+                      <i class="fas fa-bolt"></i> Live View
+                    </a>
+                    <a
+                      href="https://github.com/avdeshjadon/CodeManipulate"
+                      target="_blank"
+                      class="project-btn github-btn"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">CodeLangConvert AI</h3>
+                  <h3 class="project-title">CodeManipulate</h3>
                   <p class="project-description">
-                    An intelligent web application that translates code snippets
-                    between various programming languages using a generative AI
-                    model.
+                    An intelligent web application leveraging a generative AI
+                    model to translate, format, and minify code snippets across
+                    multiple programming languages. A versatile toolkit for
+                    developers.
                   </p>
                   <div class="tech-stack">
                     <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Express</span>
-                    <span class="tech-tag">Google Gemini</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">Generative AI</span>
+                    <span class="tech-tag">JavaScript</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-header">
+                  <div class="project-icon">
+                    <i class="fab fa-twitter"></i>
+                  </div>
+                  <div class="project-links">
+                    <a
+                      href="your-live-link.com"
+                      target="_blank"
+                      class="project-btn live-btn"
+                    >
+                      <i class="fas fa-bolt"></i> Live View
+                    </a>
+                    <a
+                      href="https://github.com/avdeshjadon/Twitter-Home"
+                      target="_blank"
+                      class="project-btn github-btn"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3 class="project-title">Twitter Homepage - Clone</h3>
+                  <p class="project-description">
+                    A pixel-perfect, responsive static clone of the Twitter
+                    homepage. This project demonstrates strong foundational
+                    skills in HTML and CSS to replicate complex, modern UI
+                    layouts.
+                  </p>
+                  <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-header">
+                  <div class="project-icon">
+                    <i class="fab fa-spotify"></i>
+                  </div>
+                  <div class="project-links">
+                    <a
+                      href="your-live-link.com"
+                      target="_blank"
+                      class="project-btn live-btn"
+                    >
+                      <i class="fas fa-bolt"></i> Live View
+                    </a>
+                    <a
+                      href="https://github.com/avdeshjadon/Spotify-Clone"
+                      target="_blank"
+                      class="project-btn github-btn"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3 class="project-title">Spotify Homepage - Clone</h3>
+                  <p class="project-description">
+                    A visually accurate and responsive static replica of the
+                    Spotify homepage. A deep dive into modern CSS techniques
+                    like Flexbox and Grid to recreate a popular, polished user
+                    interface.
+                  </p>
+                  <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">Flexbox & Grid</span>
                   </div>
                 </div>
               </div>
@@ -518,7 +660,7 @@
 
     <footer class="enhanced-footer">
       <div class="footer-content">
-        <p>&copy; 2025 Avdesh Jadon</p>
+        <p>&copy; 2025 Avdesh Jadon | CodeManipulate</p>
         <div class="footer-links">
           <a href="index.html" class="footer-link">
             <i class="fas fa-arrow-left"></i>
@@ -531,23 +673,38 @@
     <script src="script/main.js" defer></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const typingText = document.querySelector(".typing-text");
-        const text = typingText.dataset.text;
-        let index = 0;
+        // Typing Animation Logic (for multiple elements)
+        const allTypingElements = document.querySelectorAll(".typing-text");
 
-        function typeWriter() {
-          if (index < text.length) {
-            typingText.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeWriter, 100);
+        allTypingElements.forEach((element) => {
+          const text = element.dataset.text;
+          let index = 0;
+          element.textContent = ""; // Clear initial text
+
+          function typeWriter() {
+            if (index < text.length) {
+              element.textContent += text.charAt(index);
+              index++;
+              setTimeout(typeWriter, 100); // Typing speed
+            } else {
+              // --- YEH NAYA CODE HAI ---
+              // Typing khatam hone ke baad cursor ko hide kar do
+              const cursor = element.nextElementSibling;
+              if (cursor && cursor.classList.contains("cursor")) {
+                cursor.style.display = "none";
+              }
+            }
           }
-        }
+          // Start animation after a short delay
+          setTimeout(typeWriter, 1000);
+        });
 
-        setTimeout(typeWriter, 1000);
-
+        // Ripple effect for contact button
         document.querySelectorAll(".contact-btn").forEach((button) => {
           button.addEventListener("click", function (e) {
             const ripple = this.querySelector(".btn-ripple");
+            if (!ripple) return; // Make sure ripple element exists
+
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
