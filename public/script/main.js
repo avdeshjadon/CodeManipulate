@@ -194,22 +194,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (!response.ok) {
-          // -- MODIFICATION START --
           if (response.status === 429) {
-            // This is the Redis rate limit for too many requests per minute
             if (data.retryAfter) {
               handleRateLimit(data.retryAfter);
             } else {
-              // This is our new Gemini daily quota limit error
               showNotification("Daily Quota Reached", data.message, "info");
               resetConvertButton();
             }
           } else {
-            // For other errors (like 500), throw to the catch block
             throw new Error(data.error || "An unknown server error occurred.");
           }
-          // -- MODIFICATION END --
         } else {
+          console.log("API response processed by:", data.usedKey);
           outputCode.value = data.convertedCode;
           detectedLang.textContent = data.detectedLang;
           if (outputCharCount)
