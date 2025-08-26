@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
+  // --- Desktop Tools Drawer Logic ---
   const allToolsBtn = document.getElementById("allToolsBtn");
   const toolsDrawer = document.getElementById("toolsDrawer");
 
@@ -43,8 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+
+    // START: Fix for DESKTOP tools drawer
+    const toolLinks = document.querySelectorAll("#toolsDrawer .tool-link");
+    toolLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (toolsDrawer.classList.contains("show")) {
+                toolsDrawer.classList.remove("show");
+                allToolsBtn.classList.remove("active");
+            }
+        });
+    });
+    // END: Fix for DESKTOP tools drawer
   }
 
+  // --- Mobile Hamburger Menu Logic ---
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
 
@@ -53,6 +67,20 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
     });
+
+    // START: NAYA FIX for MOBILE tools dropdown
+    // Mobile ke tool links ko select karein
+    const mobileToolLinks = document.querySelectorAll(".tool-link-mobile");
+    mobileToolLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // Jab link par click ho, to mobile menu (navMenu) ko band kar dein
+        if (navMenu.classList.contains("active")) {
+          navMenu.classList.remove("active");
+          hamburger.classList.remove("active");
+        }
+      });
+    });
+    // END: NAYA FIX for MOBILE tools dropdown
   }
 
   const animatedElements = document.querySelectorAll(".anim-group");
