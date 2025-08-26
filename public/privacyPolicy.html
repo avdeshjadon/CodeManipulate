@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | CodeManipulate</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      .privacy-content {
+        color: var(--text-color);
+        font-family: var(--font-main);
+        padding: 2.5rem;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: var(--shadow-medium);
+        animation: fadeIn 0.5s ease-out;
+      }
+      .privacy-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.75rem;
+        color: var(--heading-color);
+      }
+      .privacy-content h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--heading-color);
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .privacy-content h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--heading-color-light);
+      }
+      .privacy-content p,
+      .privacy-content li {
+        font-size: 0.85rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 1.25rem;
+      }
+      .privacy-content ul {
+        list-style-type: disc;
+        padding-left: 25px;
+      }
+      .privacy-content a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .privacy-content a:hover {
+        text-decoration: underline;
+      }
+      .privacy-content strong {
+        font-weight: 600;
+        color: var(--heading-color-light);
+      }
+      .privacy-content .last-updated {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+        margin-bottom: 2rem;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-bg"></div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          <span class="logo-text">CodeManipulate</span>
+        </a>
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="about.html" class="nav-btn">About Me</a>
+            <button class="nav-btn" id="allToolsBtn">
+              All Tools <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="mobile-tools-container">
+              <a href="formatter.html" class="tool-link-mobile"
+                ><i class="fas fa-align-left"></i> Code Formatter</a
+              >
+              <a href="minifier.html" class="tool-link-mobile"
+                ><i class="fas fa-compress"></i> Code Minifier</a
+              >
+              <a href="json.html" class="tool-link-mobile"
+                ><i class="fas fa-code-merge"></i> JSON Tools</a
+              >
+              <a href="sql.html" class="tool-link-mobile"
+                ><i class="fas fa-database"></i> SQL Tools</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-controls">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div id="toolsDrawer" class="tools-drawer">
+      <div class="tools-drawer-content">
+        <a href="formatter.html" class="tool-link"
+          ><i class="fas fa-align-left"></i> Code Formatter</a
+        >
+        <a href="minifier.html" class="tool-link"
+          ><i class="fas fa-compress"></i> Code Minifier</a
+        >
+        <a href="json.html" class="tool-link"
+          ><i class="fas fa-code-merge"></i> JSON Tools</a
+        >
+        <a href="sql.html" class="tool-link"
+          ><i class="fas fa-database"></i> SQL Tools</a
+        >
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="privacy-content">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">
+          <strong>Effective Date:</strong> August 26, 2025
+        </p>
+
+        <h2>1. Introduction and Scope</h2>
+        <p>
+          This Privacy Policy details the commitment of CodeManipulate ("we,"
+          "us," or "our") to safeguarding the privacy of individuals ("you,"
+          "your," "user") who access, browse, or use our website and its
+          associated services, including but not limited to code formatting,
+          minification, and translation tools (collectively, the "Services").
+          This document outlines our principles and practices regarding the
+          collection, use, processing, disclosure, and protection of your data,
+          including Personal Data and other information.
+        </p>
+        <p>
+          By engaging with our Services, you acknowledge that you have read,
+          comprehended, and consented to the data practices described in this
+          Privacy Policy and our accompanying Terms of Service. If you do not
+          agree with any part of this policy, you must refrain from using our
+          Services.
+        </p>
+        <p>
+          <strong>Definitions:</strong>
+          <ul>
+            <li>
+              <strong>Personal Data:</strong> Any information relating to an
+              identified or identifiable natural person.
+            </li>
+            <li>
+              <strong>Usage Data:</strong> Data collected automatically, generated
+              either by the use of the Service or from the Service infrastructure
+              itself (for example, the duration of a page visit).
+            </li>
+            <li>
+              <strong>Processing:</strong> Any operation or set of operations
+              which is performed on Personal Data or on sets of Personal Data.
+            </li>
+          </ul>
+        </p>
+
+        <h2>2. Information We Collect and Process</h2>
+        <p>
+          To provide and enhance our Services, we collect several types of
+          information from and about our users. The collection is limited to what
+          is necessary for the legitimate purposes outlined in this policy.
+        </p>
+
+        <h3>2.1. Data Provided Directly by You</h3>
+        <ul>
+          <li>
+            <strong>User Content:</strong> This refers to the code, text, queries,
+            or other data snippets that you voluntarily input into our tools for
+            processing ("User Content"). Our core privacy principle is that
+            <strong>we do not permanently store or log the substantive content
+            of your User Content.</strong> Processing is performed in-memory or
+            via transient, stateless API calls. Once the Service has performed
+            the requested manipulation and delivered the output, the input User
+            Content is programmatically discarded. We do not use your User
+            Content for any purpose other than fulfilling your direct request.
+            You are strongly cautioned against entering any sensitive data, trade
+            secrets, credentials, or protected health information into our
+            tools.
+          </li>
+          <li>
+            <strong>Correspondence Data:</strong> If you contact us via email or
+            other means for support or feedback, we will process your name, email
+            address, and the content of your communication. This data is used
+_           exclusively to address your inquiry and is retained only as long as
+            necessary to resolve the matter.
+          </li>
+        </ul>
+
+        <h3>2.2. Data Collected Automatically (Usage Data)</h3>
+        <p>
+          As you navigate and interact with our Services, we employ automated
+          data collection technologies to gather certain information about your
+          equipment, browsing actions, and patterns.
+        </p>
+        <ul>
+          <li>
+            <strong>Server Log Information:</strong> Our servers automatically
+            record information that your browser sends whenever you visit our
+            website. These server logs may include information such as your web
+            request, Internet Protocol (IP) address (which may be used to infer
+            your general geographic location), browser type and language, device
+            type, operating system, referring/exit pages and URLs, number of
+            clicks, and the date and time of your request. This data is essential
+            for security monitoring, error diagnosis, and analyzing service
+            performance.
+          </li>
+          <li>
+            <strong>Service Usage Metadata:</strong> We collect anonymized or
+            aggregated metadata about your interactions with the Services. This
+            includes which tools are used, the language of the code processed
+            (e.g., "JavaScript", "Python"), the size of the input data (in
+            bytes), and the success or failure of the operation. This metadata does
+            not contain any part of your User Content but is vital for us to
+            understand service popularity, identify performance bottlenecks, and
+            guide future development.
+          </li>
+          <li>
+            <strong>Cookies and Similar Technologies:</strong> We use cookies and
+            similar tracking technologies to track activity on our Service and
+            hold certain information. For a detailed explanation, please see
+            Section 6, "Cookie Policy and User Choices."
+          </li>
+        </ul>
+
+        <h2>3. Legal Basis for Processing Personal Data</h2>
+        <p>
+          If you are from the European Economic Area (EEA), our legal basis for
+          collecting and using the personal information described in this Privacy
+          Policy depends on the Personal Data we collect and the specific context
+          in which we collect it. We will normally process your Personal Data only
+          where:
+        </p>
+        <ul>
+          <li>
+            <strong>It is necessary for the performance of a contract:</strong> To
+            provide the core functionality of our Services to you. Your use of our
+            tools constitutes a request, and our processing of your data to
+            fulfill that request is a contractual necessity.
+          </li>
+          <li>
+            <strong>It is in our legitimate interests:</strong> We process data for
+            our legitimate interests, provided that these interests are not
+            overridden by your data protection interests or fundamental rights
+            and freedoms. Our legitimate interests include:
+            <ul>
+              <li>
+                Ensuring the security and integrity of our Services.
+              </li>
+              <li>
+                Analyzing usage patterns to improve and optimize our Services.
+              </li>
+              <li>
+                Debugging and fixing technical issues.
+              </li>
+              <li>
+                Defending against legal claims and enforcing our terms.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>You have given us consent to do so:</strong> For example, for
+            the use of certain non-essential cookies.
+          </li>
+          <li>
+            <strong>To comply with a legal obligation:</strong> We may need to
+            process your data to comply with legal or regulatory requirements.
+          </li>
+        </ul>
+
+        <h2>4. Purpose and Use of Information</h2>
+        <p>
+          We use the information we collect for the following business and
+          operational purposes:
+        </p>
+        <ul>
+          <li>
+            <strong>Service Provision and Operation:</strong> To deliver the core
+            functionality of our tools, process your requests, and maintain the
+            day-to-day operation of the website.
+          </li>
+          <li>
+            <strong>Security and Fraud Prevention:</strong> To monitor for,
+            detect, and prevent malicious, deceptive, fraudulent, or illegal
+            activity on our Services. This includes analyzing IP addresses and
+            request patterns to mitigate DDoS attacks and other threats.
+          </li>
+          <li>
+            <strong>Analytics and Service Improvement:</strong> To conduct
+            research and analysis on user behavior and service performance. This
+            allows us to understand which features are most valuable, improve the
+            user experience, and allocate development resources effectively.
+          </li>
+          <li>
+            <strong>Technical Maintenance and Debugging:</strong> To identify and
+            resolve technical issues, crashes, and errors that may impair the
+            functionality of the Services.
+          </li>
+          <li>
+            <strong>Legal and Regulatory Compliance:</strong> To enforce our Terms
+            of Service and to comply with applicable laws, court orders, or other
+            legal processes.
+          </li>
+        </ul>
+
+        <h2>5. Data Sharing and Disclosure</h2>
+        <p>
+          We uphold a strict policy against selling or renting your Personal Data.
+          We may disclose your information to third parties only in the limited
+          circumstances detailed below.
+        </p>
+        <ul>
+          <li>
+            <strong>Third-Party Processors (Service Providers):</strong> We engage
+            reputable third-party companies and individuals to perform services
+            on our behalf. These may include:
+            <ul>
+              <li>
+                <strong>Cloud Infrastructure Providers:</strong> For hosting our
+                website and its backend services (e.g., Vercel, Render). These
+                providers do not have access to application-level data except as
+                required for infrastructure maintenance.
+              </li>
+              <li>
+                <strong>Generative AI Service Providers:</strong> For specific tools
+                like code translation, your User Content is sent via a secure API
+                call to a third-party AI model for processing. We use providers
+                who have committed to not using API-submitted data for model
+                training and to not retain the data longer than necessary for the
+                transaction.
+              </li>
+              <li>
+                <strong>Analytics Partners:</strong> We may use third-party
+                analytics services (e.g., a privacy-focused alternative to Google
+                Analytics) to help us understand service usage. These services
+                are configured to anonymize IP addresses and respect user privacy.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Legal Requirements and Protection of Rights:</strong> We may
+            disclose your information if required to do so by law or in the good
+            faith belief that such action is necessary to (i) comply with a legal
+            obligation, (ii) protect and defend the rights or property of
+            CodeManipulate, (iii) prevent or investigate possible wrongdoing in
+            connection with the Service, or (iv) protect the personal safety of
+            users of the Service or the public.
+          </li>
+          <li>
+            <strong>Business Transfers:</strong> In the event of a merger,
+            acquisition, reorganization, or sale of assets, your information may
+            be transferred as part of that transaction. We will provide notice before
+            your information is transferred and becomes subject to a different
+            privacy policy.
+          </li>
+        </ul>
+
+        <h2>6. Cookie Policy and User Choices</h2>
+        <h3>6.1. What Are Cookies?</h3>
+        <p>
+          Cookies are small text files placed on your device by websites that you
+          visit. They are widely used to make websites work, or work more
+          efficiently, as well as to provide information to the owners of the
+          site.
+        </p>
+        <h3>6.2. How We Use Cookies</h3>
+        <p>
+          We use cookies for the following purposes:
+        </p>
+        <ul>
+          <li>
+            <strong>Strictly Necessary Cookies:</strong> These cookies are essential
+            for you to browse the website and use its features. Without these,
+            services like remembering your session cannot be provided.
+          </li>
+          <li>
+            <strong>Functionality Cookies:</strong> These are used to recognize you
+            when you return to our website and to remember your preferences. For
+            example, we use a cookie (`theme`) to store your preference for dark
+            or light mode, so you do not have to set it on every visit.
+          </li>
+          <li>
+            <strong>Performance/Analytics Cookies:</strong> These cookies collect
+            information about how you use our website, like which pages you
+            visited and which links you clicked on. None of this information can
+            be used to identify you. It is all aggregated and, therefore,
+            anonymized. Their sole purpose is to improve website functions.
+          </li>
+        </ul>
+        <h3>6.3. Managing Cookies</h3>
+        <p>
+          Most web browsers allow some control of most cookies through the browser
+          settings. You can set your browser to refuse all cookies or to indicate
+          when a cookie is being sent. However, if you do not accept cookies, you
+          may not be able to use some portions of our Service (for example, theme
+          persistence).
+        </p>
+
+        <h2>7. Data Security Measures</h2>
+        <p>
+          We are committed to protecting your information. We have implemented
+          appropriate and commercially reasonable technical, physical, and
+          administrative security measures to protect against unauthorized
+          access, disclosure, alteration, or destruction of information. These
+          measures include:
+        </p>
+        <ul>
+          <li>
+            <strong>Encryption:</strong> We use SSL/TLS encryption to protect data
+            in transit between your browser and our servers.
+          </li>
+          <li>
+            <strong>Access Controls:</strong> We enforce strict access controls
+            within our organization, ensuring that only authorized personnel have
+            access to user data on a need-to-know basis.
+          </li>
+          <li>
+            <strong>Infrastructure Security:</strong> We rely on secure cloud
+            infrastructure providers who maintain high standards of physical and
+            network security.
+          </li>
+        </ul>
+        <p>
+          Despite our safeguards, no electronic transmission or storage is 100%
+          secure. We cannot guarantee the absolute security of your information,
+          and we encourage you to be cautious.
+        </p>
+
+        <h2>8. Data Retention Policy</h2>
+        <p>
+          We retain Usage Data and other Personal Data for as long as necessary to
+          fulfill the purposes outlined in this Privacy Policy, unless a longer
+          retention period is required or permitted by law. Server logs containing
+          IP addresses are typically rotated and deleted within 90 days.
+          Anonymized analytics data may be retained for longer periods for
+          statistical purposes. As stated, User Content is not retained post-processing.
+        </p>
+
+        <h2>9. Your Data Protection Rights</h2>
+        <p>
+          You have certain rights regarding your Personal Data, subject to local
+          data protection laws. Depending on your location, these may include:
+        </p>
+        <ul>
+          <li>
+            <strong>The right to access, update, or delete</strong> the
+            information we have on you.
+          </li>
+          <li><strong>The right of rectification.</strong></li>
+          <li><strong>The right to object</strong> to our processing.</li>
+          <li><strong>The right of restriction.</strong></li>
+          <li><strong>The right to data portability.</strong></li>
+          <li>
+            <strong>The right to withdraw consent</strong> at any time where we
+            relied on your consent to process your personal information.
+          </li>
+        </ul>
+        <p>
+          To exercise these rights, please contact us. Note that given the minimal
+          Personal Data we collect, the applicability of some rights may be
+          limited. For instance, as we do not have user accounts, requests to
+          "delete your information" would be limited to data linked to your
+          browser's cookies or specific correspondence you have sent us.
+        </p>
+
+        <h2>10. International Data Transfers</h2>
+        <p>
+          Your information, including Personal Data, may be transferred to — and
+          maintained on — computers located outside of your state, province,
+          country, or other governmental jurisdiction where the data protection
+          laws may differ from those of your jurisdiction. Our primary hosting is
+          in the United States. If you are located in the European Union, your
+          information will be transferred to the US. We take all steps reasonably
+          necessary to ensure that your data is treated securely and in accordance
+          with this Privacy Policy.
+        </p>
+
+        <h2>11. Children's Privacy</h2>
+        <p>
+          Our Services are not intended for use by children under the age of 16.
+          We do not knowingly collect personally identifiable information from
+          children under 16. If you become aware that a child has provided us
+          with Personal Data, please contact us.
+        </p>
+
+        <h2>12. Changes to This Privacy Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. We will notify you
+          of any changes by posting the new Privacy Policy on this page and
+          updating the "Effective Date" at the top. You are advised to review
+          this Privacy Policy periodically for any changes. Your continued use of
+          the Service after the posting of changes constitutes your acceptance of
+          such changes.
+        </p>
+
+        <h2>13. Contact Information</h2>
+        <p>
+          For any questions, concerns, or requests relating to this Privacy
+          Policy, please contact us. As this is a personal project, the most
+          effective way to reach the data controller is by raising an issue on the
+          public GitHub repository associated with this project, which can be
+          found on the developer's "About Me" page.
+        </p>
+      </div>
+    </main>
+
+    <footer class="enhanced-footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Avdesh Jadon | CodeManipulate</p>
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to CodeManipulate
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="script/console-dev.js" defer></script>
+    <script src="script/main.js" defer></script>
+  </body>
+</html>

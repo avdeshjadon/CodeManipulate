@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service | CodeManipulate</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      .privacy-content {
+        color: var(--text-color);
+        font-family: var(--font-main);
+        padding: 2.5rem;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: var(--shadow-medium);
+        animation: fadeIn 0.5s ease-out;
+      }
+      .privacy-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.75rem;
+        color: var(--heading-color);
+      }
+      .privacy-content h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--heading-color);
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .privacy-content h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--heading-color-light);
+      }
+      .privacy-content p,
+      .privacy-content li {
+        font-size: 0.85rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 1.25rem;
+      }
+      .privacy-content ul {
+        list-style-type: disc;
+        padding-left: 25px;
+      }
+      .privacy-content a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .privacy-content a:hover {
+        text-decoration: underline;
+      }
+      .privacy-content strong {
+        font-weight: 600;
+        color: var(--heading-color-light);
+      }
+      .privacy-content .last-updated {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+        margin-bottom: 2rem;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-bg"></div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          <span class="logo-text">CodeManipulate</span>
+        </a>
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="about.html" class="nav-btn">About Me</a>
+            <button class="nav-btn" id="allToolsBtn">
+              All Tools <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="mobile-tools-container">
+              <a href="formatter.html" class="tool-link-mobile"
+                ><i class="fas fa-align-left"></i> Code Formatter</a
+              >
+              <a href="minifier.html" class="tool-link-mobile"
+                ><i class="fas fa-compress"></i> Code Minifier</a
+              >
+              <a href="json.html" class="tool-link-mobile"
+                ><i class="fas fa-code-merge"></i> JSON Tools</a
+              >
+              <a href="sql.html" class="tool-link-mobile"
+                ><i class="fas fa-database"></i> SQL Tools</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-controls">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div id="toolsDrawer" class="tools-drawer">
+      <div class="tools-drawer-content">
+        <a href="formatter.html" class="tool-link"
+          ><i class="fas fa-align-left"></i> Code Formatter</a
+        >
+        <a href="minifier.html" class="tool-link"
+          ><i class="fas fa-compress"></i> Code Minifier</a
+        >
+        <a href="json.html" class="tool-link"
+          ><i class="fas fa-code-merge"></i> JSON Tools</a
+        >
+        <a href="sql.html" class="tool-link"
+          ><i class="fas fa-database"></i> SQL Tools</a
+        >
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="privacy-content">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">
+          <strong>Effective Date:</strong> August 26, 2025
+        </p>
+
+        <h2>1. Agreement to Terms</h2>
+        <p>
+          Welcome to CodeManipulate ("we," "us," "the Service"). These Terms of
+          Service ("Terms") constitute a legally binding agreement between you,
+          the user, and CodeManipulate, governing your access to and use of our
+          website and all related tools and services.
+        </p>
+        <p>
+          BY ACCESSING, BROWSING, OR USING THE SERVICE, YOU ACKNOWLEDGE THAT YOU
+          HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND OUR
+          PRIVACY POLICY, WHICH IS INCORPORATED HEREIN BY REFERENCE. IF YOU DO
+          NOT AGREE TO THESE TERMS, YOU MAY NOT ACCESS OR USE THE SERVICE.
+        </p>
+
+        <h2>2. Description of Service</h2>
+        <p>
+          CodeManipulate provides a suite of online tools for developers,
+          including but not limited to code formatting, minification,
+          translation, and validation ("Tools"). The Service is accessible via
+          our public website.
+        </p>
+        <p>
+          We reserve the right to modify, suspend, or discontinue the Service,
+          or any of its features, at any time and without prior notice. The
+          Service is provided on an "AS-IS" and "AS-AVAILABLE" basis. We are
+          under no obligation to provide support or maintenance for the Service.
+        </p>
+
+        <h2>3. User Conduct and Acceptable Use</h2>
+        <p>
+          As a condition of your use of the Service, you agree not to use the
+          Service for any purpose that is unlawful or prohibited by these Terms.
+          You are solely responsible for all your activity in connection with
+          the Service. Prohibited activities include, but are not limited to:
+        </p>
+        <ul>
+          <li>
+            Using the Service for any illegal, fraudulent, or malicious purpose,
+            or in violation of any local, state, national, or international law.
+          </li>
+          <li>
+            Submitting, uploading, or processing any data that is unlawful,
+            threatening, abusive, harassing, defamatory, libelous, deceptive, or
+            invasive of another's privacy.
+          </li>
+          <li>
+            Inputting any code or content that contains software viruses, worms,
+            Trojan horses, or any other computer code, files, or programs that
+            are designed or intended to disrupt, damage, or limit the
+            functioning of any software, hardware, or telecommunications
+            equipment.
+          </li>
+          <li>
+            Attempting to gain unauthorized access to our systems, servers, or
+            networks connected to the Service through hacking, password mining,
+            or any other means.
+          </li>
+          <li>
+            Using any automated system, including "robots," "spiders," or
+            "offline readers," to access the Service in a manner that sends more
+            request messages to our servers than a human can reasonably produce
+            in the same period by using a conventional web browser, without our
+            express prior written permission.
+          </li>
+          <li>
+            Submitting any sensitive personal information, including but not
+            limited to government identification numbers, financial information,
+            protected health information, or credentials (API keys, passwords).
+            The Tools are not designed for processing such sensitive data.
+          </li>
+          <li>
+            Infringing upon or violating our intellectual property rights or the
+            intellectual property rights of others.
+          </li>
+        </ul>
+
+        <h2>4. Content Submitted to the Service ("User Content")</h2>
+        <h3>4.1. Ownership and Rights</h3>
+        <p>
+          You retain full ownership of and all intellectual property rights to
+          the code, text, and other data you submit to the Service for
+          processing ("User Content"). We do not claim any ownership rights over
+          your User Content. These Terms do not grant us any licenses or rights
+          to your User Content except for the limited rights required to operate
+          the Service, as set forth below.
+        </p>
+        <h3>4.2. Limited License to Us</h3>
+        <p>
+          By submitting User Content to the Service, you grant CodeManipulate a
+          limited, worldwide, non-exclusive, royalty-free, terminable license to
+          use, reproduce, modify, adapt, and display the User Content. This
+          license is granted
+          <strong>solely for the transient and automated purpose</strong> of
+          providing the requested Service to you (e.g., to receive your code,
+          format it, and transmit the formatted version back to you). This
+          license terminates automatically and immediately once the processing
+          of your request is complete.
+        </p>
+        <h3>4.3. Our "No-Storage" Policy</h3>
+        <p>
+          We are committed to your privacy and data security. The Service is
+          designed to be stateless. We do not permanently store or log your User
+          Content on our servers. All processing is done in-memory or in
+          temporary, volatile storage and is discarded immediately after the
+          operation is fulfilled.
+        </p>
+
+        <h2>5. Intellectual Property of the Service</h2>
+        <p>
+          Excluding User Content, all elements of the Service, including but not
+          limited to the website design, text, graphics, logos, icons, images,
+          and the underlying source code, are the sole property of
+          CodeManipulate or its licensors and are protected by copyright,
+          trademark, and other intellectual property laws. You may not copy,
+          reproduce, modify, distribute, or create derivative works from the
+          Service without our - express written permission.
+        </p>
+
+        <h2>6. Disclaimers and Limitation of Liability</h2>
+        <h3>6.1. Disclaimer of Warranties</h3>
+        <p>
+          THE SERVICE IS PROVIDED "AS IS," "AS AVAILABLE," AND WITHOUT WARRANTY
+          OF ANY KIND, EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE BY
+          LAW, CODEMANIPULATE DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT
+          LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+          PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+        </p>
+        <p>
+          CODEMANIPULATE DOES NOT WARRANT THAT: (A) THE SERVICE WILL BE SECURE,
+          ERROR-FREE, OR UNINTERRUPTED; (B) THE RESULTS OF USING THE SERVICE
+          (E.G., FORMATTED OR MINIFIED CODE) WILL BE ACCURATE, COMPLETE, OR
+          RELIABLE; (C) ANY DEFECTS OR ERRORS WILL BE CORRECTED; OR (D) THE
+          SERVICE IS FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. YOUR USE OF
+          THE SERVICE IS SOLELY AT YOUR OWN RISK.
+        </p>
+
+        <h3>6.2. Limitation of Liability</h3>
+        <p>
+          IN NO EVENT SHALL CODEMANIPULATE, ITS OWNER, AFFILIATES, OR LICENSORS
+          BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
+          PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA,
+          USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM: (I) YOUR
+          ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (II)
+          ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE; (III) ANY
+          CONTENT OBTAINED FROM THE SERVICE; AND (IV) UNAUTHORIZED ACCESS, USE,
+          OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT, WHETHER BASED ON
+          WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), OR ANY OTHER LEGAL
+          THEORY, WHETHER OR NOT WE HAVE BEEN INFORMED OF THE POSSIBILITY OF
+          SUCH DAMAGE.
+        </p>
+
+        <h2>7. Indemnification</h2>
+        <p>
+          You agree to defend, indemnify, and hold harmless CodeManipulate and
+          its owner from and against any and all claims, damages, obligations,
+          losses, liabilities, costs, or debt, and expenses (including but not
+          limited to attorney's fees) arising from: (i) your use of and access
+          to the Service; (ii) your violation of any term of these Terms; or
+          (iii) your violation of any third-party right, including without
+          limitation any copyright, property, or privacy right.
+        </p>
+
+        <h2>8. Termination</h2>
+        <p>
+          We may terminate or suspend your access to our Service immediately,
+          without prior notice or liability, for any reason whatsoever,
+          including, without limitation, if you breach these Terms. Upon
+          termination, your right to use the Service will immediately cease. All
+          provisions of the Terms which by their nature should survive
+          termination shall survive termination, including, without limitation,
+          ownership provisions, warranty disclaimers, indemnity, and limitations
+          of liability.
+        </p>
+
+        <h2>9. Governing Law</h2>
+        <p>
+          These Terms shall be governed and construed in accordance with the
+          laws of India, without regard to its conflict of law provisions. Any
+          legal action or proceeding arising under these Terms will be brought
+          exclusively in the courts located in Ranchi, Jharkhand, and the
+          parties hereby irrevocably consent to the personal jurisdiction and
+          venue therein.
+        </p>
+
+        <h2>10. Changes to These Terms</h2>
+        <p>
+          We reserve the right, at our sole discretion, to modify or replace
+          these Terms at any time. We will indicate changes by updating the
+          "Effective Date" at the top of this page. What constitutes a material
+          change will be determined at our sole discretion.
+        </p>
+        <p>
+          By continuing to access or use our Service after those revisions
+          become effective, you agree to be bound by the revised terms.
+        </p>
+
+        <h2>11. Miscellaneous</h2>
+        <ul>
+          <li>
+            <strong>Entire Agreement:</strong> These Terms and our Privacy
+            Policy constitute the entire agreement between you and
+            CodeManipulate regarding our Service and supersede all prior
+            agreements.
+          </li>
+          <li>
+            <strong>Severability:</strong> If any provision of these Terms is
+            held to be invalid or unenforceable, the remaining provisions will
+            remain in full force and effect.
+          </li>
+          <li>
+            <strong>No Waiver:</strong> Our failure to enforce any right or
+            provision of these Terms will not be considered a waiver of those
+            rights.
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="enhanced-footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Avdesh Jadon | CodeManipulate</p>
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to CodeManipulate
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="script/console-dev.js" defer></script>
+    <script src="script/main.js" defer></script>
+  </body>
+</html>

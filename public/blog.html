@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | CodeManipulate</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      .privacy-content {
+        color: var(--text-color);
+        font-family: var(--font-main);
+        padding: 2.5rem;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: var(--shadow-medium);
+        animation: fadeIn 0.5s ease-out;
+      }
+      .privacy-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.75rem;
+        color: var(--heading-color);
+        text-align: center;
+      }
+      .privacy-content .blog-subtitle {
+        font-size: 1rem;
+        color: var(--text-color-light);
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .blog-post-card {
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow-small);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .blog-post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-large);
+      }
+      .post-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .post-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--heading-color);
+        margin-bottom: 0.75rem;
+      }
+      .post-meta {
+        font-size: 0.8rem;
+        color: var(--text-color-light);
+        margin-bottom: 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .post-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .post-excerpt {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        text-align: justify;
+        color: var(--text-color);
+        flex-grow: 1;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-bg"></div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          <span class="logo-text">CodeManipulate</span>
+        </a>
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="about.html" class="nav-btn">About Me</a>
+            <button class="nav-btn" id="allToolsBtn">
+              All Tools <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="mobile-tools-container">
+              <a href="formatter.html" class="tool-link-mobile"
+                ><i class="fas fa-align-left"></i> Code Formatter</a
+              >
+              <a href="minifier.html" class="tool-link-mobile"
+                ><i class="fas fa-compress"></i> Code Minifier</a
+              >
+              <a href="json.html" class="tool-link-mobile"
+                ><i class="fas fa-code-merge"></i> JSON Tools</a
+              >
+              <a href="sql.html" class="tool-link-mobile"
+                ><i class="fas fa-database"></i> SQL Tools</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-controls">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div id="toolsDrawer" class="tools-drawer">
+      <div class="tools-drawer-content">
+        <a href="formatter.html" class="tool-link"
+          ><i class="fas fa-align-left"></i> Code Formatter</a
+        >
+        <a href="minifier.html" class="tool-link"
+          ><i class="fas fa-compress"></i> Code Minifier</a
+        >
+        <a href="json.html" class="tool-link"
+          ><i class="fas fa-code-merge"></i> JSON Tools</a
+        >
+        <a href="sql.html" class="tool-link"
+          ><i class="fas fa-database"></i> SQL Tools</a
+        >
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="privacy-content">
+        <h1>The CodeManipulate Blog</h1>
+        <p class="blog-subtitle">
+          Insights on Code Quality, Performance, and Developer Productivity
+        </p>
+
+        <div class="blog-grid">
+          <article class="blog-post-card">
+            <div class="post-content">
+              <h2 class="post-title">
+                Why Code Readability Matters: More Than Just Aesthetics
+              </h2>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> Avdesh Jadon</span>
+                <span><i class="fas fa-calendar-alt"></i> Aug 22, 2025</span>
+              </div>
+              <p class="post-excerpt">
+                We often think of code as a set of instructions for a computer.
+                But in reality, code is a form of communication for humans. It's
+                read far more often than it's written, especially in
+                collaborative projects. This article explores the profound
+                impact of readable code on maintainability, bug reduction, and
+                team velocity. We'll delve into the cognitive science behind why
+                our brains prefer structured information and how tools like
+                automated formatters can offload the mental burden of style
+                debates, allowing developers to focus on what truly matters:
+                solving problems.
+              </p>
+            </div>
+          </article>
+
+          <article class="blog-post-card">
+            <div class="post-content">
+              <h2 class="post-title">
+                The True Cost of a Kilobyte: A Deep Dive into Web Performance
+              </h2>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> Avdesh Jadon</span>
+                <span><i class="fas fa-calendar-alt"></i> Aug 15, 2025</span>
+              </div>
+              <p class="post-excerpt">
+                Every character in your CSS and JavaScript files has a cost—a
+                cost measured in milliseconds of latency and megabytes of user
+                data. In an era of mobile-first indexing and global audiences
+                with varying network speeds, performance is not a luxury; it's a
+                core feature. This post breaks down the critical path of
+                rendering a webpage, explaining how asset size directly impacts
+                load times and user experience. We'll look at the tangible
+                benefits of minification, from improved conversion rates to
+                better SEO rankings and a better user experience.
+              </p>
+            </div>
+          </article>
+
+          <article class="blog-post-card">
+            <div class="post-content">
+              <h2 class="post-title">
+                Debugging Hell: How a JSON Validator Can Save Your Sanity
+              </h2>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> Avdesh Jadon</span>
+                <span><i class="fas fa-calendar-alt"></i> Aug 08, 2025</span>
+              </div>
+              <p class="post-excerpt">
+                You've spent hours debugging your application. The frontend
+                isn't rendering data, the backend is throwing a cryptic 500
+                error, and you're questioning your life choices. The culprit? A
+                single trailing comma in a 10,000-line JSON response from an
+                API. This scenario is painfully familiar to many developers.
+                This article makes the case for a "validate-first" approach when
+                working with JSON. We'll explore the most common JSON syntax
+                errors and how a simple validator acts as a crucial first line
+                of defense.
+              </p>
+            </div>
+          </article>
+
+          <article class="blog-post-card">
+            <div class="post-content">
+              <h2 class="post-title">
+                Writing Clean SQL: A Guide to Maintainable Database Queries
+              </h2>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> Avdesh Jadon</span>
+                <span><i class="fas fa-calendar-alt"></i> Aug 01, 2025</span>
+              </div>
+              <p class="post-excerpt">
+                SQL queries often start simple but can evolve into complex,
+                multi-join behemoths that are nearly impossible to decipher. An
+                unformatted SQL query is a form of technical debt that makes
+                debugging, optimization, and collaboration incredibly difficult.
+                This guide provides actionable principles for writing clean SQL.
+                We cover consistent keyword casing, logical indentation of
+                clauses, and the use of aliases to improve clarity, turning
+                confusion into a pillar of stability for your application.
+              </p>
+            </div>
+          </article>
+
+          <article class="blog-post-card">
+            <div class="post-content">
+              <h2 class="post-title">
+                The Power of Automation: How Scripting Can 10x Your Workflow
+              </h2>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> Avdesh Jadon</span>
+                <span><i class="fas fa-calendar-alt"></i> Jul 25, 2025</span>
+              </div>
+              <p class="post-excerpt">
+                As developers, our most valuable asset is our time. Repetitive
+                tasks, whether deploying a project, cleaning data, or generating
+                boilerplate, can drain our productivity. This post explores the
+                mindset of automation and provides practical examples using
+                shell scripts and Python. Learn how a small, upfront investment
+                in writing a script can save hundreds of hours in the long run,
+                reduce human error, and free you up to tackle more complex and
+                creative challenges.
+              </p>
+            </div>
+          </article>
+
+          <article class="blog-post-card">
+            <div class="post-content">
+              <h2 class="post-title">
+                What is an API? Explained for Beginners and Managers
+              </h2>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> Avdesh Jadon</span>
+                <span><i class="fas fa-calendar-alt"></i> Jul 18, 2025</span>
+              </div>
+              <p class="post-excerpt">
+                The term "API" (Application Programming Interface) is ubiquitous
+                in the tech world, but what does it actually mean? This article
+                demystifies the concept from the ground up using a simple
+                restaurant analogy. We'll explain how APIs act as intermediaries
+                that allow different software applications to talk to each
+                other. We'll cover the basics of REST APIs, requests, responses,
+                and endpoints in a way that is accessible to absolute beginners,
+                project managers, and anyone who wants to understand the
+                fundamental building blocks of modern software.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="enhanced-footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Avdesh Jadon | CodeManipulate</p>
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to CodeManipulate
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script/console-dev.js" defer></script>
+    <script src="script/main.js" defer></script>
+  </body>
+</html>

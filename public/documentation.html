@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation | CodeManipulate</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      .privacy-content {
+        color: var(--text-color);
+        font-family: var(--font-main);
+        padding: 2.5rem;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: var(--shadow-medium);
+        animation: fadeIn 0.5s ease-out;
+      }
+      .privacy-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.75rem;
+        color: var(--heading-color);
+      }
+      .privacy-content h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--heading-color);
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .privacy-content h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--heading-color-light);
+      }
+      .privacy-content h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: var(--heading-color-light);
+      }
+      .privacy-content p,
+      .privacy-content li {
+        font-size: 0.85rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 1.25rem;
+      }
+      .privacy-content ul {
+        list-style-type: disc;
+        padding-left: 25px;
+      }
+      .privacy-content ol {
+        list-style-type: decimal;
+        padding-left: 25px;
+      }
+      .privacy-content a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .privacy-content a:hover {
+        text-decoration: underline;
+      }
+      .privacy-content strong {
+        font-weight: 600;
+        color: var(--heading-color-light);
+      }
+      .privacy-content code {
+        font-family: var(--font-mono);
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+      .privacy-content pre {
+        background-color: var(--code-bg);
+        padding: 1rem;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+      .privacy-content .last-updated {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+        margin-bottom: 2rem;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-bg"></div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code logo-icon"></i>
+          <span class="logo-text">CodeManipulate</span>
+        </a>
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="about.html" class="nav-btn">About Me</a>
+            <button class="nav-btn" id="allToolsBtn">
+              All Tools <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="mobile-tools-container">
+              <a href="formatter.html" class="tool-link-mobile"
+                ><i class="fas fa-align-left"></i> Code Formatter</a
+              >
+              <a href="minifier.html" class="tool-link-mobile"
+                ><i class="fas fa-compress"></i> Code Minifier</a
+              >
+              <a href="json.html" class="tool-link-mobile"
+                ><i class="fas fa-code-merge"></i> JSON Tools</a
+              >
+              <a href="sql.html" class="tool-link-mobile"
+                ><i class="fas fa-database"></i> SQL Tools</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-controls">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div id="toolsDrawer" class="tools-drawer">
+      <div class="tools-drawer-content">
+        <a href="formatter.html" class="tool-link"
+          ><i class="fas fa-align-left"></i> Code Formatter</a
+        >
+        <a href="minifier.html" class="tool-link"
+          ><i class="fas fa-compress"></i> Code Minifier</a
+        >
+        <a href="json.html" class="tool-link"
+          ><i class="fas fa-code-merge"></i> JSON Tools</a
+        >
+        <a href="sql.html" class="tool-link"
+          ><i class="fas fa-database"></i> SQL Tools</a
+        >
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="privacy-content">
+        <h1>Comprehensive Website Documentation</h1>
+        <p class="last-updated">
+          <strong>Version:</strong> 1.0 | <strong>Last Updated:</strong> August
+          26, 2025
+        </p>
+
+        <h2>1. Introduction: Philosophy and Vision</h2>
+        <p>
+          Welcome to the definitive guide for CodeManipulate. This document is
+          designed to be an exhaustive resource, providing deep insight into
+          every facet of the website, from its high-level mission to the
+          granular, technical details of its tools. Our goal is to create a
+          transparent and empowering experience for every user.
+        </p>
+        <h3>1.1. The Mission: Democratizing Developer Tools</h3>
+        <p>
+          In today's fast-paced digital landscape, developer productivity is
+          paramount. However, the ecosystem is often fragmented and costly.
+          Powerful IDEs, linters, and build tools can have steep learning curves
+          and prohibitive licensing fees. This creates a "productivity gap"
+          between developers at large corporations with extensive resources and
+          the vast community of students, freelancers, hobbyists, and
+          professionals at smaller companies.
+        </p>
+        <p>
+          The core mission of CodeManipulate is to bridge this gap. We believe
+          that essential tools for code quality, readability, and performance
+          optimization should be universally accessible. Our philosophy is
+          rooted in three key principles:
+        </p>
+        <ul>
+          <li>
+            <strong>Simplicity:</strong> Our tools are designed to be intuitive
+            and require zero configuration. The user interface is clean,
+            focused, and removes all friction between having a problem (e.g.,
+            messy code) and getting a solution (e.g., clean code).
+          </li>
+          <li>
+            <strong>Speed:</strong> In a developer's workflow, every second
+            counts. Our tools are built to be lightning-fast, with most
+            operations executing near-instantly, whether on the client-side or
+            through our optimized backend.
+          </li>
+          <li>
+            <strong>Security:</strong> We recognize that code is a valuable
+            asset. Our fundamental commitment is to user privacy. The
+            "no-storage" architecture, detailed in Section 4, is not just a
+            feature; it is the bedrock of our platform.
+          </li>
+        </ul>
+        <h3>1.2. Target Audience: User Personas</h3>
+        <p>
+          CodeManipulate is built for a diverse audience. We've considered the
+          needs of various user profiles in our design and development process:
+        </p>
+        <ul>
+          <li>
+            <strong>Priya, the Computer Science Student:</strong> Priya is in
+            her second year of university, learning data structures in C++ and
+            web development. When she finds code snippets online for her
+            projects, they're often poorly formatted. She uses the Code
+            Formatter to instantly clean them up, helping her understand the
+            code's structure and adhere to the best practices taught in her
+            classes.
+          </li>
+          <li>
+            <strong>David, the Freelance Frontend Developer:</strong> David
+            builds websites for small businesses. His clients' budgets are
+            tight, and performance is key. Before deploying a new site, he uses
+            the Code - Minifier to compress all his JavaScript and CSS files,
+            significantly reducing page load times and improving his clients'
+            Google PageSpeed scores.
+          </li>
+          <li>
+            <strong>Aisha, the Backend Engineer:</strong> Aisha is debugging a
+            microservice that communicates with another service via a REST API.
+            She receives a massive, unformatted, single-line JSON payload that
+            is causing a parsing error. She pastes the entire payload into the
+            JSON Tools suite. The validator immediately points out a trailing
+            comma on line 847, and the tree viewer lets her explore the complex
+            nested data to ensure the structure is correct.
+          </li>
+          <li>
+            <strong>Carlos, the Data Analyst:</strong> Carlos writes complex SQL
+            queries to extract business intelligence from a large database. His
+            queries often involve multiple joins, subqueries, and CTEs. He uses
+            the SQL Formatter to turn his dense query into a beautifully
+            structured and readable format, making it easier for him and his
+            colleagues to review and debug.
+          </li>
+        </ul>
+
+        <hr />
+
+        <h2>2. In-Depth Guide to Core Tools</h2>
+        <p>
+          This section provides an exhaustive analysis of each tool available on
+          CodeManipulate, including its underlying mechanics, use cases, and
+          step-by-step examples.
+        </p>
+
+        <h3>2.1. The Code Formatter</h3>
+        <h4>2.1.1. Philosophy and Purpose</h4>
+        <p>
+          Code is read far more often than it is written. The primary purpose of
+          the Code Formatter is to enhance code readability and maintainability.
+          Inconsistent formatting in a codebase, especially one worked on by
+          multiple developers, leads to cognitive friction, making it harder to
+          understand logic, spot bugs, and collaborate effectively. Our
+          formatter enforces a consistent, conventional style, turning chaotic
+          code into a clean and professional-looking format.
+        </p>
+
+        <h4>2.1.2. Supported Languages and Standards</h4>
+        <p>
+          The formatter is powered by a set of robust parsing libraries tailored
+          for each language:
+        </p>
+        <ul>
+          <li>
+            <strong>JavaScript:</strong> Adheres to widely-accepted community
+            standards, similar to those enforced by tools like Prettier. It
+            handles modern ES6+ syntax, JSX, and complex object literals with
+            ease.
+          </li>
+          <li>
+            <strong>HTML:</strong> Correctly indents nested tags, handles
+            attributes, and properly formats embedded JavaScript (within
+            <code>&lt;script&gt;</code> tags) and CSS (within
+            <code>&lt;style&gt;</code> tags).
+          </li>
+          <li>
+            <strong>CSS:</strong> Formats selectors, properties, and media
+            queries according to standard conventions, ensuring consistency in
+            your stylesheets.
+          </li>
+          <li>
+            <strong>JSON:</strong> Strictly formats the input into a readable,
+            indented structure. This is particularly useful for configuration
+            files or API responses.
+          </li>
+          <li>
+            <strong>SQL:</strong> Recognizes different dialects and formats
+            keywords, clauses, joins, and subqueries for maximum readability.
+          </li>
+        </ul>
+
+        <h4>2.1.3. How It Works: A Technical Glimpse</h4>
+        <p>
+          The formatting process is more than just adding tabs and newlines. It
+          involves a sophisticated multi-stage pipeline:
+        </p>
+        <ol>
+          <li>
+            <strong>Lexical Analysis (Tokenization):</strong> The input string
+            of code is first broken down into a sequence of "tokens." For
+            example, the code <code>const x=10;</code> would be tokenized into:
+            <code>const</code> (keyword), <code>x</code> (identifier),
+            <code>=</code> (operator), <code>10</code> (literal), and
+            <code>;</code> (punctuator).
+          </li>
+          <li>
+            <strong>Syntactic Analysis (Parsing):</strong> The sequence of
+            tokens is then parsed to build an Abstract Syntax Tree (AST). An AST
+            is a tree representation of the code's structure. For
+            <code>const x=10;</code>, the AST would have a root node like
+            'VariableDeclaration', with children for the kind ('const'), the
+            identifier ('x'), and the initial value ('10').
+          </li>
+          <li>
+            <strong>Code Generation (Pretty-Printing):</strong> The formatter
+            traverses the AST and reconstructs the code as a string, but this
+            time following a strict set of formatting rules. It knows that a
+            'VariableDeclaration' should be on its own line, that the '='
+            operator should be surrounded by spaces, and that the statement
+            should end with a semicolon. This AST-based approach ensures that
+            the formatting is syntactically aware and doesn't accidentally
+            change the code's meaning.
+          </li>
+        </ol>
+
+        <h4>2.1.4. Walkthrough with Examples</h4>
+        <p><strong>Example 1: Messy JavaScript</strong></p>
+        <p>Imagine you find this snippet online:</p>
+        <pre><code>
+const getUser =(id,cb)=>{fetch('https://api.example.com/users/'+id).then(res=>res.json()).then(data=>cb(data)).catch(err=>console.log(err));}
+        </code></pre>
+        <p>
+          Pasting this into the formatter and selecting "JavaScript" yields:
+        </p>
+        <pre><code>
+const getUser = (id, cb) => {
+  fetch("https://api.example.com/users/" + id)
+    .then((res) => res.json())
+    .then((data) => cb(data))
+    .catch((err) => console.log(err));
+};
+        </code></pre>
+        <p>
+          The output is immediately more understandable. The function definition
+          is clear, the promise chain is vertically aligned, and standard
+          spacing is applied.
+        </p>
+
+        <h3>2.2. The Code Minifier</h3>
+        <h4>2.2.1. Philosophy and Purpose</h4>
+        <p>
+          In the context of web development, performance is a feature. The Code
+          Minifier is a performance optimization tool. Its sole purpose is to
+          reduce the size of text-based assets (like JavaScript, CSS, and HTML)
+          as much as possible without breaking their functionality. Smaller
+          files are transferred from the server to the user's browser more
+          quickly, leading to faster page loads, a better user experience, and
+          even lower bandwidth costs for both the user and the server host.
+        </p>
+
+        <h4>2.2.2. Minification Techniques Explained</h4>
+        <p>
+          The minifier employs several aggressive techniques to shrink file
+          size:
+        </p>
+        <ul>
+          <li>
+            <strong>Whitespace Removal:</strong> All non-essential whitespace
+            characters, including spaces, tabs, and newlines, are stripped out.
+            This is the most significant source of file size reduction.
+          </li>
+          <li>
+            <strong>Comment Removal:</strong> All code comments (e.g.,
+            <code>//...</code> and <code>/*...*/</code>) are removed as they are
+            not needed for execution.
+          </li>
+          <li>
+            <strong>Variable and Function Renaming (Mangling):</strong> In
+            JavaScript, local variable and function names can be safely replaced
+            with shorter names (e.g., <code>calculateTotalAmount</code> becomes
+            <code>a</code>). The minifier analyzes the code's scope to ensure
+            that these renames don't cause conflicts. Global variables or
+            properties that might be accessed externally are left untouched.
+          </li>
+        </ul>
+        <p>
+          It's important to distinguish minification from obfuscation. While
+          both make code harder to read, minification's goal is purely size
+          reduction, and it's a reversible process (via a formatter).
+          Obfuscation's primary goal is to make the code intentionally difficult
+          to reverse-engineer, often by introducing nonsensical logic.
+        </p>
+
+        <h4>2.2.3. Walkthrough with Examples</h4>
+        <p><strong>Example: Unminified JavaScript with Comments</strong></p>
+        <pre><code>
+// This function calculates the sum of two numbers
+function calculateSum(firstNumber, secondNumber) {
+  // Return the result
+  return firstNumber + secondNumber;
+}
+        </code></pre>
+        <p>After running this through the minifier, the output is:</p>
+        <pre><code>
+function calculateSum(n,t){return n+t}
+        </code></pre>
+        <p>
+          Notice how the comments and extra whitespace are gone, and the long
+          parameter names have been shortened to single letters. The
+          functionality remains identical, but the byte size is drastically
+          reduced. The tool provides a percentage reduction, quantifying the
+          performance benefit.
+        </p>
+
+        <h3>2.3. The JSON Tools Suite</h3>
+        <h4>2.3.1. The Critical Role of JSON</h4>
+        <p>
+          JSON (JavaScript Object Notation) has become the de facto standard for
+          data interchange on the web. It's used everywhere: in API responses,
+          configuration files, and data storage. However, working with large,
+          unformatted JSON can be a nightmare. A single missing comma can
+          invalidate an entire document. Our JSON Tools suite is designed to be
+          a robust workbench for handling these challenges.
+        </p>
+
+        <h4>2.3.2. Feature 1: The Real-time Validator</h4>
+        <p>
+          The validator is the first line of defense. As you type or paste JSON
+          into the editor, it continuously parses the content in the background.
+          It checks for compliance with the formal JSON specification (RFC
+          8259), which includes rules like:
+        </p>
+        <ul>
+          <li>Objects must be enclosed in curly braces <code>{}</code>.</li>
+          <li>Arrays must be enclosed in square brackets <code>[]</code>.</li>
+          <li>Keys must be strings enclosed in double quotes.</li>
+          <li>Strings must use double quotes, not single quotes.</li>
+          <li>
+            A comma must separate key/value pairs and array elements, but there
+            must not be a trailing comma after the last element.
+          </li>
+        </ul>
+        <p>
+          If a rule is violated, an error message appears immediately, providing
+          the line and character number, which is invaluable for debugging
+          massive files.
+        </p>
+
+        <h4>2.3.3. Feature 2: The Interactive Tree Viewer</h4>
+        <p>
+          Once the JSON is validated, it's not only formatted but also rendered
+          as an interactive tree. This hierarchical view is far superior to
+          plain text for understanding data relationships. Key features include:
+        </p>
+        <ul>
+          <li>
+            <strong>Collapsible Nodes:</strong> You can expand and collapse
+            objects and arrays to focus on the parts of the data you're
+            interested in.
+          </li>
+          <li>
+            <strong>Data Type Highlighting:</strong> Strings, numbers, booleans,
+            and null values are often color-coded for quick identification.
+          </li>
+          <li>
+            <strong>Copy Path:</strong> A powerful feature allowing you to
+            right-click a node and copy its JavaScript path (e.g.,
+            <code>data.users[2].address.city</code>) to your clipboard, saving
+            time when accessing nested data in your code.
+          </li>
+        </ul>
+
+        <h3>2.4. The SQL Tools Suite</h3>
+        <h4>2.4.1. Bringing Sanity to Database Queries</h4>
+        <p>
+          SQL (Structured Query Language) is the language of databases. Complex
+          business logic often results in long, convoluted queries with multiple
+          joins, subqueries, and conditional logic. An unformatted SQL query is
+          notoriously difficult to debug and understand. The SQL Formatter
+          applies a consistent set of rules to bring order to this chaos.
+        </p>
+
+        <h4>2.4.2. Formatting Logic and Dialect Awareness</h4>
+        <p>
+          The formatter is designed to be intelligent. It's not just about
+          indentation. It understands SQL syntax and applies rules like:
+        </p>
+        <ul>
+          <li>
+            <strong>Keyword Capitalization:</strong> All reserved SQL keywords
+            like <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>,
+            <code>GROUP BY</code>, <code>JOIN</code>, etc., are capitalized for
+            easy distinction from table and column names.
+          </li>
+          <li>
+            <strong>Clause Indentation:</strong> Each major clause is placed on
+            a new line and indented logically. Subqueries are indented further
+            to show their nested relationship.
+          </li>
+          <li>
+            <strong>Dialect-Specific Functions:</strong> The tool recognizes
+            functions and syntax specific to different database systems (e.g.,
+            <code>TOP 10</code> in T-SQL vs. <code>LIMIT 10</code> in
+            PostgreSQL) and formats them correctly.
+          </li>
+        </ul>
+        <p><strong>Example: A Complex, Unformatted SQL Query</strong></p>
+        <pre><code>
+select u.id, p.name, count(o.id) as order_count from users u join profiles p on u.id = p.user_id left join orders o on u.id = o.user_id where u.signup_date > '2023-01-01' and u.status = 'active' group by u.id, p.name having count(o.id) > 5 order by order_count desc;
+        </code></pre>
+        <p><strong>Formatted Output:</strong></p>
+        <pre><code>
+SELECT
+  u.id,
+  p.name,
+  COUNT(o.id) AS order_count
+FROM
+  users u
+  JOIN profiles p ON u.id = p.user_id
+  LEFT JOIN orders o ON u.id = o.user_id
+WHERE
+  u.signup_date > '2023-01-01'
+  AND u.status = 'active'
+GROUP BY
+  u.id,
+  p.name
+HAVING
+  COUNT(o.id) > 5
+ORDER BY
+  order_count DESC;
+        </code></pre>
+        <p>
+          The formatted version is vastly superior. The logic flows clearly from
+          top to bottom, joins are aligned, and the conditions in the
+          <code>WHERE</code> clause are easy to read individually.
+        </p>
+
+        <hr />
+
+        <h2>3. Deep Dive into Website Functionality</h2>
+        <p>
+          This section explores the site-wide features that create a cohesive
+          and user-friendly experience.
+        </p>
+
+        <h3>3.1. The Dual-Theme System (Light/Dark Mode)</h3>
+        <h4>3.1.1. The 'Why': User Comfort and Accessibility</h4>
+        <p>
+          Providing both a light and a dark theme is no longer a novelty; it's a
+          standard for modern applications. It caters to user preference and
+          varying lighting conditions. Dark themes can reduce eye strain in
+          low-light environments and can save battery life on OLED screens.
+          Accessibility is also a key consideration, as some users with visual
+          impairments find dark themes with high contrast easier to read.
+        </p>
+
+        <h4>3.1.2. The 'How': Technical Implementation</h4>
+        <p>
+          The theme system is implemented using modern, efficient web
+          technologies:
+        </p>
+        <ol>
+          <li>
+            <strong>CSS Custom Properties (Variables):</strong> The entire color
+            scheme of the site is defined using CSS variables in the root scope
+            (e.g., <code>--background-color</code>, <code>--text-color</code>,
+            <code>--primary-color</code>).
+          </li>
+          <li>
+            <strong>Class-Based Toggling:</strong> When a user clicks the theme
+            toggle button, a simple JavaScript function adds or removes a class,
+            such as <code>.dark-mode</code>, to the root
+            <code>&lt;html&gt;</code> element.
+          </li>
+          <li>
+            <strong>Theme Definitions:</strong> The CSS contains a rule block
+            like <code>html.dark-mode { ... }</code> that redefines the values
+            of the CSS variables. For example,
+            <code>--background-color</code> changes from <code>#FFFFFF</code> to
+            <code>#121212</code>. Because the entire site uses these variables,
+            every component instantly updates its appearance without needing a
+            page reload.
+          </li>
+          <li>
+            <strong>State Persistence with localStorage:</strong> To ensure the
+            user's choice is remembered, the current theme state ("dark" or
+            "light") is saved in the browser's <code>localStorage</code>. When
+            the page loads, a script runs immediately to check this value in
+            <code>localStorage</code> and applies the appropriate class,
+            preventing the "flash" of the default theme before the user's
+            preference is loaded.
+          </li>
+        </ol>
+
+        <h3>3.2. Responsive Design and UI/UX Philosophy</h3>
+        <h4>3.2.1. Mobile-First Approach</h4>
+        <p>
+          The website is designed with a mobile-first philosophy. This means the
+          layout and styling are initially created for the smallest screen size
+          and then progressively enhanced for larger screens (tablets, desktops)
+          using CSS media queries. This approach ensures a quality experience
+          for the growing number of mobile users and often results in a more
+          performant and focused design.
+        </p>
+
+        <h4>3.2.2. The Two-Panel Editor</h4>
+        <p>
+          The core UI for all tools is the side-by-side input/output editor.
+          This design is intentional:
+        </p>
+        <ul>
+          <li>
+            <strong>Immediate Feedback:</strong> Users can instantly see the
+            "before" and "after" of their code, making the tool's effect clear
+            and tangible.
+          </li>
+          <li>
+            <strong>Iterative Workflow:</strong> It allows for a rapid workflow
+            where a user can paste code, process it, see the result, and then
+            copy it, all within a single view without losing context.
+          </li>
+          <li>
+            <strong>Responsive Adaptation:</strong> On smaller screens, this
+            side-by-side layout gracefully stacks into a vertical top-and-bottom
+            layout to ensure content remains readable and usable.
+          </li>
+        </ul>
+
+        <hr />
+
+        <h2>4. Exhaustive Privacy & Security Analysis</h2>
+        <h3>4.1. Our Unwavering Commitment</h3>
+        <p>
+          In a digital world fraught with data breaches and privacy concerns, we
+          have architected CodeManipulate to be a "zero-trust" environment for
+          your sensitive code. Our security model is not an afterthought; it is
+          the single most important design constraint of our entire platform. We
+          operate under the simple but powerful principle:
+          <strong
+            >we cannot lose, misuse, or expose data that we do not have.</strong
+          >
+        </p>
+
+        <h3>4.2. Threat Modeling and Mitigations</h3>
+        <p>
+          We've considered several potential security threats and have built-in
+          mitigations:
+        </p>
+        <ul>
+          <li>
+            <strong>Threat: Data Interception in Transit.</strong> An attacker
+            on the same network (e.g., public Wi-Fi) could try to intercept the
+            data sent between your browser and our server.
+            <ul>
+              <li>
+                <strong>Mitigation: Mandatory HTTPS.</strong> We enforce HTTPS
+                across the entire website using TLS (Transport Layer Security)
+                encryption. This creates a secure, encrypted tunnel for all
+                data, making it unreadable to eavesdroppers.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Threat: Server-Side Data Breach.</strong> An attacker could
+            compromise our servers to access stored user data.
+            <ul>
+              <li>
+                <strong>Mitigation: The "No-Storage" Architecture.</strong> This
+                is our strongest defense. Since we do not write any User Content
+                to a database or filesystem, there is no data to steal from a
+                server breach. All processing happens in volatile memory (RAM)
+                during the brief lifecycle of a single HTTP request and is wiped
+                immediately after.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Threat: Cross-Site Scripting (XSS).</strong> An attacker
+            could try to inject malicious scripts into our tools.
+            <ul>
+              <li>
+                <strong>Mitigation: Content Sanitization.</strong> While our
+                tools are designed to work with code, we employ best practices
+                to ensure that any output rendered on the page is properly
+                escaped to prevent it from being executed as a script in another
+                user's browser.
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>4.3. A Deeper Look at the "No-Storage" Policy</h3>
+        <p>
+          Let's be technically precise. When you click "Format," your browser
+          sends the input code in an HTTP request to our backend. Our server
+          application, running in a secure environment, receives this request.
+          The application loads your code into its RAM, passes it to the
+          appropriate formatting library, receives the formatted output (still
+          in RAM), places this output into an HTTP response, and sends that
+          response back to your browser. Once the response is sent, the request
+          lifecycle is over, and the memory allocated for that specific task is
+          released by the garbage collector. At no point does the data touch a
+          hard disk, a database, or any other form of persistent storage on our
+          servers.
+        </p>
+
+        <hr />
+
+        <h2>5. Complete Technical Architecture</h2>
+        <h3>5.1. Frontend Architecture</h3>
+        <ul>
+          <li>
+            <strong>Core Technologies:</strong> The frontend is intentionally
+            kept lean and performant, built with semantic
+            <strong>HTML5</strong>, modern <strong>CSS3</strong>, and
+            <strong>vanilla JavaScript (ES6+)</strong>. The deliberate choice to
+            avoid heavy frameworks like React or Angular ensures the fastest
+            possible initial load time and a snappy user experience.
+          </li>
+          <li>
+            <strong>DOM Manipulation:</strong> All interactions are handled by
+            efficient, event-driven JavaScript that directly manipulates the
+            Document Object Model (DOM).
+          </li>
+          <li>
+            <strong>Client-Side Processing:</strong> For many simpler
+            operations, the processing logic is executed directly in your
+            browser using JavaScript, providing instant results without any
+            network latency.
+          </li>
+        </ul>
+
+        <h3>5.2. Backend Architecture</h3>
+        <ul>
+          <li>
+            <strong>Runtime and Framework:</strong> The backend is built on
+            <strong>Node.js</strong>, a fast and efficient JavaScript runtime.
+            We use the minimalist and robust
+            <strong>Express.js</strong> framework to handle routing and API
+            endpoints.
+          </li>
+          <li>
+            <strong>API Design:</strong> The backend exposes a simple, stateless
+            RESTful API. The frontend communicates with it by sending a payload
+            (the user's code) to a specific endpoint (e.g.,
+            <code>/api/format/javascript</code>) and receiving the processed
+            data in the response.
+          </li>
+          <li>
+            <strong>Scalability:</strong> The stateless nature of the backend
+            means it can be scaled horizontally with ease. If traffic increases,
+            more instances of the application can be deployed behind a load
+            balancer without any complex state management.
+          </li>
+        </ul>
+
+        <hr />
+
+        <h2>6. Expanded Frequently Asked Questions (FAQ)</h2>
+        <p>
+          This section addresses a wide range of potential user questions with
+          detailed, transparent answers.
+        </p>
+
+        <h4>General</h4>
+        <p>
+          <strong>Q: Is this service really free? What's the catch?</strong
+          ><br />A: Yes, it is 100% free. There is no catch. CodeManipulate is a
+          portfolio project created and maintained by a passionate developer.
+          Its purpose is to showcase skills and provide a genuinely useful tool
+          to the community. There are no ads, no premium tiers, and no selling
+          of data.
+        </p>
+
+        <h4>Usage & Functionality</h4>
+        <p>
+          <strong
+            >Q: Is there a file size or character limit for the tools?</strong
+          ><br />A: While our backend is robust, there are practical
+          limitations. Very large inputs (e.g., files over 10MB) may experience
+          long processing times or even timeouts. Additionally, your browser may
+          become sluggish when trying to paste and handle extremely large
+          amounts of text in the editor. We recommend using our tools for
+          typical file sizes found in web development and scripting.
+        </p>
+        <p>
+          <strong
+            >Q: What happens if the formatter or minifier breaks my
+            code?</strong
+          ><br />A: We use industry-standard, well-tested libraries for all code
+          manipulations. The risk of syntactical corruption is extremely low.
+          However, you should ALWAYS use a version control system like Git.
+          Process your code in a local development branch, review the changes,
+          and test them thoroughly before committing or deploying. We provide
+          the tools "AS IS" and are not liable for any issues that may arise
+          from their use.
+        </p>
+
+        <h4>Privacy & Security</h4>
+        <p>
+          <strong
+            >Q: You say you don't store my code, but how can I be sure?</strong
+          ><br />A: We encourage healthy skepticism. Our commitment is backed by
+          our architecture. A system designed without a database or file-writing
+          permissions for user content is inherently more secure. While you have
+          to take our word for it, this project is part of a public portfolio
+          where transparency and trust are paramount. A single instance of
+          proven data misuse would be reputationally catastrophic. The privacy
+          of our users is the project's most important feature.
+        </p>
+        <p>
+          <strong
+            >Q: What about the third-party AI service for code translation? Is
+            my code sent to them?</strong
+          ><br />A: Yes, for the code translation feature specifically, the code
+          snippet you provide is sent to a third-party Generative AI provider's
+          API. We have chosen our providers carefully based on their privacy
+          policies. We use enterprise-grade APIs where the provider has a
+          contractual commitment not to use the submitted data for training
+          their models and to retain it only for the duration necessary to
+          process the request. Your code is not added to a dataset for future
+          model versions.
+        </p>
+
+        <h4>Contribution & Contact</h4>
+        <p>
+          <strong>Q: I found a bug! Where do I report it?</strong><br />A: Thank
+          you for helping improve the service! The best way to report a bug is
+          to go to the developer's <a href="about.html">About Me</a> page, find
+          the link to their GitHub profile, and open a new "Issue" on the
+          CodeManipulate project repository. Please include the input code that
+          caused the bug, the expected output, and the actual output.
+        </p>
+        <p>
+          <strong
+            >Q: Can I request a new feature or support for another
+            language?</strong
+          ><br />A: Absolutely. Feature requests are welcome and can be
+          submitted as an "Issue" on the GitHub repository, just like a bug
+          report. We are always looking for ways to make the tool more useful
+          for the community.
+        </p>
+      </div>
+    </main>
+
+    <footer class="enhanced-footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Avdesh Jadon | CodeManipulate</p>
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to CodeManipulate
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="script/console-dev.js" defer></script>
+    <script src="script/main.js" defer></script>
+  </body>
+</html>
