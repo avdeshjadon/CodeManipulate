@@ -112,7 +112,7 @@
 }
 
 .profile-name {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
@@ -325,7 +325,7 @@
 
 .hero-main {
   display: block;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 800;
   line-height: 1.2;
   color: var(--text-primary);
@@ -397,7 +397,7 @@
 }
 
 .title-main {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -786,6 +786,6 @@
   }
   .hero-main,
   .title-main {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 }

@@ -36,16 +36,32 @@
       <div class="nav-container">
         <a href="index.html" class="logo">
           <i class="fas fa-code logo-icon"></i>
-          CodeManipulate
+          <span class="logo-text">CodeManipulate</span>
         </a>
         <div class="nav-menu">
           <div class="nav-links">
-            <a href="index.html" class="nav-btn">Home</a>
+            <a href="index.html" class="nav-btn active">Home</a>
             <a href="about.html" class="nav-btn">About Me</a>
             <button class="nav-btn" id="allToolsBtn">
               All Tools <i class="fas fa-chevron-down"></i>
             </button>
+            <div class="mobile-tools-container">
+              <a href="formatter.html" class="tool-link-mobile"
+                ><i class="fas fa-align-left"></i> Code Formatter</a
+              >
+              <a href="minifier.html" class="tool-link-mobile"
+                ><i class="fas fa-compress"></i> Code Minifier</a
+              >
+              <a href="json.html" class="tool-link-mobile"
+                ><i class="fas fa-code-merge"></i> JSON Tools</a
+              >
+              <a href="sql.html" class="tool-link-mobile"
+                ><i class="fas fa-database"></i> SQL Tools</a
+              >
+            </div>
           </div>
+        </div>
+        <div class="nav-controls">
           <button
             class="theme-toggle"
             id="themeToggle"
@@ -53,12 +69,12 @@
           >
             <i class="fas fa-moon"></i>
           </button>
+          <button class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
         </div>
-        <button class="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
       </div>
     </nav>
 

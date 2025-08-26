@@ -3,576 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Me - CodeManipulate</title>
-
+    <title>Contact Me | CodeManipulate</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/contact.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <style>
-      :root {
-        --bg-primary: #eef2e6;
-        --bg-secondary: #f4f7f0;
-        --text-primary: #0f172a;
-        --text-secondary: #475569;
-        --accent-primary: #469154;
-        --accent-secondary: #3a7a46;
-        --border-color: #d1d5db;
-        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
-        --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
-        --transition: all 0.3s ease-in-out;
-        --radius: 14px;
-      }
-
-      html.dark-mode {
-        --bg-primary: #0f172a;
-        --bg-secondary: #1e293b;
-        --text-primary: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --border-color: #475569;
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
-      }
-      
-      @keyframes iconWiggle {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(8deg); }
-        75% { transform: rotate(-8deg); }
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: "Poppins", Arial, sans-serif;
-        background-color: var(--bg-primary);
-        color: var(--text-secondary);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        transition: var(--transition);
-        line-height: 1.6;
-      }
-      
-      .navbar {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background: var(--bg-secondary);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border-color);
-        transition: var(--transition);
-      }
-
-      html.dark-mode .navbar {
-        background: rgba(15, 23, 42, 0.8);
-      }
-
-      .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0.75rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: var(--accent-primary);
-        text-decoration: none;
-        transition: transform 0.3s ease;
-      }
-
-      .logo:hover {
-        transform: scale(1.05);
-      }
-
-      .logo-icon {
-        font-size: 1.75rem;
-      }
-
-      .nav-menu {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .nav-btn {
-        padding: 0.6rem 1.25rem;
-        color: var(--text-secondary);
-        background-color: transparent;
-        border: none;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1rem;
-        font-family: "Inter", sans-serif;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-      }
-
-      .nav-btn:hover,
-      .nav-btn.active {
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-      }
-
-      .theme-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: none;
-        border: none;
-        color: var(--text-primary);
-        cursor: pointer;
-        border-radius: 8px;
-        transition: var(--transition);
-        margin-left: 1rem;
-      }
-
-      .theme-toggle:hover {
-        background: var(--border-color);
-        transform: rotate(15deg);
-      }
-      
-      .hamburger {
-        display: none;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0.5rem;
-      }
-
-      .hamburger .bar {
-        display: block;
-        width: 25px;
-        height: 3px;
-        margin: 5px auto;
-        transition: all 0.3s ease-in-out;
-        background-color: var(--text-primary);
-      }
-
-      .main-content {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 40px 20px;
-        width: 100%;
-      }
-
-      .contact-wrapper {
-        width: 100%;
-        max-width: 1200px;
-      }
-
-      .contact-header {
-        text-align: center;
-        margin-bottom: 40px;
-      }
-
-      .contact-header h1 {
-        font-size: 2.8rem;
-        color: var(--text-primary);
-        margin-bottom: 15px;
-        position: relative;
-        display: inline-block;
-      }
-
-      .contact-header h1::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background-color: var(--accent-primary);
-        border-radius: 2px;
-      }
-
-      .contact-header p {
-        font-size: 1.2rem;
-        max-width: 600px;
-        margin: 0 auto;
-        color: var(--text-secondary);
-      }
-
-      .contact-container {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 40px;
-        background: var(--bg-secondary);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-lg);
-        overflow: hidden;
-        position: relative;
-      }
-
-      .contact-info {
-        background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        color: #f1f5f9;
-        padding: 50px 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .contact-info::before {
-        content: '';
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.08);
-        z-index: 0;
-        top: -50px;
-        right: -50px;
-        width: 200px;
-        height: 200px;
-        animation: float 8s ease-in-out infinite;
-      }
-      
-      .contact-info h2, .contact-info p, .info-items, .social-links {
-        position: relative;
-        z-index: 1;
-      }
-
-      .contact-info h2 {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-      }
-
-      .contact-info p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-        opacity: 0.9;
-      }
-
-      .info-items {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .info-item {
-        display: flex;
-        align-items: center;
-        transition: var(--transition);
-        opacity: 0;
-        transform: translateX(-20px);
-        animation: fadeIn 0.6s ease-out forwards;
-      }
-      
-      .info-item:nth-child(1) { animation-delay: 0.2s; }
-      .info-item:nth-child(2) { animation-delay: 0.4s; }
-      .info-item:nth-child(3) { animation-delay: 0.6s; }
-
-      .info-item:hover {
-        transform: translateX(5px);
-      }
-
-      .info-item i {
-        font-size: 1.5rem;
-        margin-right: 20px;
-        width: 40px;
-        text-align: center;
-        transition: var(--transition);
-      }
-
-      .info-item:hover i {
-        animation: iconWiggle 0.5s ease-in-out;
-      }
-
-      .social-links {
-        margin-top: 40px;
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-links a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.1);
-        color: #f1f5f9;
-        border-radius: 50%;
-        font-size: 1.3rem;
-        transition: var(--transition);
-        text-decoration: none;
-      }
-
-      .social-links a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .contact-form {
-        padding: 50px 40px 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .contact-form h3 {
-        font-size: 2rem;
-        color: var(--text-primary);
-        margin-bottom: 30px;
-        position: relative;
-        padding-bottom: 15px;
-      }
-
-      .contact-form h3::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 3px;
-        background-color: var(--accent-primary);
-        border-radius: 2px;
-      }
-
-      .form-group {
-        position: relative;
-        margin-bottom: 25px;
-      }
-
-      .form-group i {
-        position: absolute;
-        left: 15px;
-        top: 18px;
-        color: var(--text-secondary);
-        transition: var(--transition);
-      }
-      
-      .form-group textarea ~ i {
-        top: 18px;
-      }
-
-      .form-group input,
-      .form-group textarea {
-        width: 100%;
-        padding: 15px 15px 15px 50px;
-        border: 2px solid var(--border-color);
-        border-radius: var(--radius);
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-        font-size: 1rem;
-        transition: var(--transition);
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-      }
-
-      .form-group input:focus,
-      .form-group textarea:focus {
-        outline: none;
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 0 3px rgba(70, 145, 84, 0.3);
-      }
-
-      .form-group input:focus ~ i,
-      .form-group textarea:focus ~ i {
-        color: var(--accent-primary);
-      }
-
-      .form-group textarea {
-        resize: vertical;
-        min-height: 150px;
-      }
-
-      .submit-btn {
-        background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-        color: #f1f5f9;
-        padding: 16px 25px;
-        border: none;
-        border-radius: var(--radius);
-        cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 600;
-        width: 100%;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: var(--shadow-md);
-      }
-
-      .submit-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(70, 145, 84, 0.3);
-      }
-
-      .submit-btn:active {
-        transform: translateY(0);
-      }
-
-      .submit-btn:disabled {
-        filter: brightness(0.8);
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-      }
-
-      .site-footer {
-        width: 100%;
-        padding: 25px 0;
-        text-align: center;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        background-color: var(--bg-secondary);
-        border-top: 1px solid var(--border-color);
-      }
-      
-      .anim-group {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .anim-group.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      
-      .contact-container.anim-group {
-        transition-delay: 0.2s;
-      }
-
-      @media (max-width: 992px) {
-        .contact-container {
-          grid-template-columns: 1fr;
-        }
-        .contact-info {
-          border-radius: var(--radius) var(--radius) 0 0;
-        }
-        .contact-form {
-          border-radius: 0 0 var(--radius) var(--radius);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .nav-menu {
-          display: none;
-          flex-direction: column;
-          align-items: flex-start;
-          position: absolute;
-          top: 65px;
-          left: 0;
-          width: 100%;
-          background-color: var(--bg-secondary);
-          border-bottom: 1px solid var(--border-color);
-          padding: 1rem;
-        }
-
-        .nav-menu.active {
-          display: flex;
-        }
-
-        .nav-links {
-          flex-direction: column;
-          width: 100%;
-          align-items: flex-start;
-          gap: 0.5rem;
-        }
-
-        .nav-btn {
-          width: 100%;
-          justify-content: flex-start;
-          padding: 0.75rem 1rem;
-        }
-
-        .theme-toggle {
-          margin-left: 0;
-          margin-top: 1rem;
-          align-self: flex-start;
-        }
-
-        .hamburger {
-          display: block;
-        }
-
-        .hamburger.active .bar:nth-child(2) {
-          opacity: 0;
-        }
-        .hamburger.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
-        }
-      }
-
-    </style>
   </head>
   <body>
+    <div class="gradient-bg"></div>
     <nav class="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <i class="fas fa-code logo-icon"></i>
-          <span>CodeManipulate</span>
+          <span class="logo-text">CodeManipulate</span>
         </a>
-        <div class="nav-menu" id="nav-menu">
+        <div class="nav-menu">
           <div class="nav-links">
             <a href="index.html" class="nav-btn">Home</a>
             <a href="about.html" class="nav-btn">About Me</a>
             <a href="contact.html" class="nav-btn active">Contact</a>
           </div>
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+        </div>
+        <div class="nav-controls">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
             <i class="fas fa-moon"></i>
           </button>
+          <button class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
         </div>
-        <button class="hamburger" id="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
       </div>
     </nav>
 
@@ -580,14 +66,20 @@
       <div class="contact-wrapper">
         <div class="contact-header anim-group">
           <h1>Let's Get In Touch</h1>
-          <p>Have a project in mind or want to collaborate? I'd love to hear from you.</p>
+          <p>
+            Have a project in mind or want to collaborate? I'd love to hear from
+            you.
+          </p>
         </div>
-        
+
         <div class="contact-container anim-group">
           <div class="contact-info">
             <h2>Connect With Me</h2>
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-            
+            <p>
+              I'm always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision.
+            </p>
+
             <div class="info-items">
               <div class="info-item">
                 <i class="fas fa-envelope"></i>
@@ -602,12 +94,29 @@
                 <span>Ranchi, Jharkhand, India</span>
               </div>
             </div>
-            
+
             <div class="social-links">
-              <a href="#" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-              <a href="#" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-              <a href="#" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              <a
+                href="https://x.com/AvdeshJado26477"
+                title="Twitter"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/avdesh-jadon-8a2968291/"
+                title="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                href="https://github.com/avdeshjadon"
+                title="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-github"></i
+              ></a>
             </div>
           </div>
 
@@ -659,10 +168,21 @@
       </div>
     </main>
 
-    <footer class="site-footer">
-      <p>© 2025 CodeManipulate. All Rights Reserved.</p>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <p class="copyright">
+            &copy; 2025 CodeManipulate. All rights reserved.
+          </p>
+          <p class="made-by">Made with ❤️ by Avdesh Jadon</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
     </footer>
-
-    <script src="script/contact.js"></script>
+    <script src="script/main.js" defer></script>
+    <script src="script/contact.js" defer></script>
   </body>
 </html>
