@@ -401,14 +401,14 @@
                   </div>
                   <div class="project-links">
                     <a
-                      href="your-live-link.com"
+                      href="https://avdeshjadon.github.io/ComixAll/"
                       target="_blank"
                       class="project-btn live-btn"
                     >
                       <i class="fas fa-bolt"></i> Live View
                     </a>
                     <a
-                      href="https://github.com/avdeshjadon/comixall"
+                      href="https://github.com/avdeshjadon/ComixAll"
                       target="_blank"
                       class="project-btn github-btn"
                     >
@@ -440,14 +440,14 @@
                   </div>
                   <div class="project-links">
                     <a
-                      href="your-live-link.com"
+                      href="https://avdeshjadon.github.io/TouchTyping/"
                       target="_blank"
                       class="project-btn live-btn"
                     >
                       <i class="fas fa-bolt"></i> Live View
                     </a>
                     <a
-                      href="https://github.com/avdeshjadon/Touch-Typing"
+                      href="https://github.com/avdeshjadon/TouchTyping"
                       target="_blank"
                       class="project-btn github-btn"
                     >
@@ -550,7 +550,7 @@
                   </div>
                   <div class="project-links">
                     <a
-                      href="your-live-link.com"
+                      href="https://avdeshjadon.github.io/Twitter-Home/"
                       target="_blank"
                       class="project-btn live-btn"
                     >
@@ -587,14 +587,14 @@
                   </div>
                   <div class="project-links">
                     <a
-                      href="your-live-link.com"
+                      href="https://avdeshjadon.github.io/Spotify-Home/"
                       target="_blank"
                       class="project-btn live-btn"
                     >
                       <i class="fas fa-bolt"></i> Live View
                     </a>
                     <a
-                      href="https://github.com/avdeshjadon/Spotify-Clone"
+                      href="https://github.com/avdeshjadon/Spotify-Home"
                       target="_blank"
                       class="project-btn github-btn"
                     >
@@ -689,22 +689,19 @@
     <script src="script/main.js" defer></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Typing Animation Logic (for multiple elements)
         const allTypingElements = document.querySelectorAll(".typing-text");
 
         allTypingElements.forEach((element) => {
           const text = element.dataset.text;
           let index = 0;
-          element.textContent = ""; // Clear initial text
+          element.textContent = "";
 
           function typeWriter() {
             if (index < text.length) {
               element.textContent += text.charAt(index);
               index++;
-              setTimeout(typeWriter, 100); // Typing speed
+              setTimeout(typeWriter, 100);
             } else {
-              // --- YEH NAYA CODE HAI ---
-              // Typing khatam hone ke baad cursor ko hide kar do
               const cursor = element.nextElementSibling;
               if (cursor && cursor.classList.contains("cursor")) {
                 cursor.style.display = "none";
