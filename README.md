@@ -402,7 +402,7 @@ SOFTWARE.
 
 - **Developer**: [Avdesh Jadon](https://github.com/avdeshjadon)
 - **Project Repository**: [CodeManipulate on GitHub](https://github.com/avdeshjadon/CodeManipulate)
-- **Live Demo**: [Try CodeManipulate](https://avdeshjadon.github.io/CodeManipulate)
+- **Live Demo**: [Try CodeManipulate](https://codemanipulate.onrender.com/)
 - **Issues & Bug Reports**: [GitHub Issues](https://github.com/avdeshjadon/CodeManipulate/issues)
 
 ---
@@ -429,7 +429,7 @@ Join our growing community of contributors and help make coding easier for every
 
 ### 🚀 **Ready to Transform Your Code?**
 
-**[🌐 Try CodeManipulate Now](https://avdeshjadon.github.io/CodeManipulate)**
+**[🌐 Try CodeManipulate Now](https://codemanipulate.onrender.com/)**
 
 </div>
 
